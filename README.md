@@ -30,7 +30,7 @@ Once installed, restart Claude Code and use:
 Run the following command in your terminal to add this repository as a marketplace:
 
 ```bash
-/plugin marketplace add lengockhoa/marketplace
+/plugin marketplace add https://github.com/lengockhoa/marketplace.git
 ```
 
 ### 2. Install the Core Plugin
