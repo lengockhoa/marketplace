@@ -1,0 +1,11 @@
+{
+  "name": "lenk-marketplace",
+  "version": "1.0.0",
+  "description": "LeNK's essential agents, skills, and slash commands for Claude Code.",
+  "author": {
+    "name": "LeNK"
+  },
+  "homepage": "https://github.com/lengockhoa/marketplace",
+  "repository": "https://github.com/lengockhoa/marketplace",
+  "license": "MIT"
+}

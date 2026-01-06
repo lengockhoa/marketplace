@@ -1,6 +1,6 @@
-# Claude Code Marketplace
+# LeNK's Claude Code Marketplace
 
-A repository of shared components for [Claude Code](https://code.claude.com).
+A repository of curated components for [Claude Code](https://code.claude.com) by **LeNK**.
 
 ## 📂 Structure
 
@@ -11,6 +11,25 @@ A repository of shared components for [Claude Code](https://code.claude.com).
 - `templates/`: Project-level templates (`CLAUDE.md`, `settings.json`, and **Conventional Commits**).
 
 ## 🚀 How to Use
+
+### 1. Add this Marketplace to Claude Code
+Run the following command in your terminal to add this repository as a marketplace:
+
+```bash
+/plugin marketplace add lengockhoa/marketplace
+```
+
+### 2. Install the Core Plugin
+Once the marketplace is added, install the core plugin to get all agents, skills, and commands:
+
+```bash
+/plugin install lenk-marketplace@LeNK Marketplace
+```
+
+---
+
+## 📂 Manual Installation (Optional)
+If you prefer not to use the plugin system, you can copy components manually:
 
 ### Installing Agents
 Copy the directory of the agent you want into your project's `.claude/agents/` or your global `~/.claude/agents/` directory.

@@ -1,0 +1,11 @@
+{
+  "name": "LeNK Marketplace",
+  "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
+  "plugins": [
+    {
+      "name": "lenk-marketplace",
+      "source": ".",
+      "description": "Core marketplace package with agents, skills, and commands."
+    }
+  ]
+}
