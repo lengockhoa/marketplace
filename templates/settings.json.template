@@ -1,0 +1,11 @@
+{
+  "theme": "dark",
+  "autoCommit": false,
+  "notifications": true,
+  "mcpServers": {
+    "example-server": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-everything"]
+    }
+  }
+}

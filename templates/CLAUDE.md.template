@@ -1,0 +1,12 @@
+# CLAUDE.md Template
+
+This file contains project-specific instructions for Claude.
+
+## Project Context
+- **Framework**: [e.g., React, Node.js]
+- **Style**: [e.g., Functional, OOP]
+
+## Rules
+- Always use `yarn` for package management.
+- Prefer `const` over `let`.
+- [Add your custom rules here]
