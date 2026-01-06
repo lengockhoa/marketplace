@@ -2,6 +2,20 @@
 
 A repository of curated components for [Claude Code](https://code.claude.com) by **LeNK**.
 
+## ⚡ Quick Start (Recommended)
+
+Install the marketplace plugin system with a single command:
+
+```bash
+curl -sL "https://raw.githubusercontent.com/lengockhoa/marketplace/main/install-plugin-system.sh" | bash
+```
+
+Once installed, restart Claude Code and use:
+- `/plugin browse` - See available tools
+- `/plugin add vue-expert` - Install a specific tool
+
+---
+
 ## 📂 Structure
 
 - `agents/`: Specialized subagent definitions (`AGENT.md`). Includes: **Architect, Debugger, Researcher, and Security Auditor**.

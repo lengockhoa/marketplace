@@ -1,0 +1,24 @@
+{
+  "name": "LeNK Marketplace Registry",
+  "lastUpdated": "2026-01-06",
+  "plugins": [
+    {
+      "id": "vue-expert",
+      "name": "Vue.js Expert",
+      "description": "Vue 3 Composition API & Pinia support",
+      "category": "Skills"
+    },
+    {
+      "id": "security-auditor",
+      "name": "Security Auditor",
+      "description": "OWASP & Security Hardening",
+      "category": "Agents"
+    },
+    {
+      "id": "architect",
+      "name": "System Architect",
+      "description": "Architecture Design & Implementation Plans",
+      "category": "Agents"
+    }
+  ]
+}
