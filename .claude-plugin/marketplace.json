@@ -1,6 +1,8 @@
 {
   "name": "lenk-marketplace",
-  "owner": "lengockhoa",
+  "owner": {
+    "name": "lengockhoa"
+  },
   "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
   "plugins": [
     {
