@@ -13,6 +13,8 @@ The Vue/Nuxt project follows this folder structure:
 
 ```
 ├── assets/           # Static assets (images, styles, fonts)
+│   ├── main.css      # Main global CSS styles
+│   └── custom.css    # Additional global CSS files
 ├── components/       # Reusable Vue components (auto-imported)
 ├── composables/      # Utility functions and helpers (auto-imported)
 ├── layouts/          # Page layout templates
@@ -25,6 +27,110 @@ The Vue/Nuxt project follows this folder structure:
 **IMPORTANT:** This project uses a **separate backend**, not Nuxt server routes. All backend communication goes through utility functions in `composables/`.
 
 ## Core Principles
+
+### CSS/Style Guidelines (IMPORTANT)
+
+**CRITICAL CSS RULES:**
+
+1. **NEVER use `<style scoped>`** - This project does NOT use scoped styles
+2. **Prefer defining CSS in `assets/` folder** (PREFERRED APPROACH)
+   - Define global styles in [`assets/main.css`](assets/main.css)
+   - Create additional `.css` files in [`assets/`](assets/) as needed (e.g., `custom.css`)
+   - CSS is global and reusable across the entire application
+3. **If inline styles are needed in a component**, use `<style>` without `scoped`:
+   ```vue
+   <style>
+   /* Global component styles */
+   </style>
+   ```
+4. **CSS organization principles:**
+   - Global styles go to [`assets/main.css`](assets/main.css)
+   - Component-specific styles: either add to [`assets/main.css`](assets/main.css) or use global `<style>` tag
+   - All CSS is scoped globally - no component isolation
+   - Reuse existing CSS classes instead of duplicating styles
+
+**CSS FRAMEWORK PREFERENCES:**
+
+1. **Primary CSS Framework: Bootstrap 5**
+
+   - Use Bootstrap 5 classes for layout and design
+   - Already included in package.json
+   - Use Bootstrap utilities: `d-flex`, `mt-3`, `text-center`, `p-2`, `container`, `row`, `col`, etc.
+   - Common Bootstrap classes: `btn`, `btn-primary`, `card`, `form-control`, `form-group`, `alert`, `modal`, `navbar`, `dropdown`, etc.
+
+2. **Secondary UI Library: Ant Design Vue**
+
+   - Use Ant Design components when needed
+   - Already included in package.json
+   - Use for complex UI components: tables, forms, modals, date pickers, select inputs, etc.
+   - Common Ant Design components: `<a-button>`, `<a-table>`, `<a-form>`, `<a-modal>`, `<a-input>`, `<a-select>`, `<a-date-picker>`, etc.
+
+3. **Styling Guidelines:**
+   - **Prefer Bootstrap 5 classes** for basic layout and styling
+   - **Use Ant Design Vue components** for complex UI elements that need advanced features
+   - Both libraries are already in package.json - no installation needed
+   - Custom CSS in [`assets/main.css`](assets/main.css) for project-specific styles
+   - Mix Bootstrap classes with Ant Design components as needed
+
+**Example Usage:**
+
+```vue
+<template>
+  <!-- Bootstrap 5 classes for layout -->
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Ant Design component for advanced features -->
+        <a-button type="primary" @click="onSubmit" :loading="loading"> Submit </a-button>
+      </div>
+      <div class="col-md-6">
+        <!-- Bootstrap alert -->
+        <div class="alert alert-success" v-if="success">Data saved successfully!</div>
+      </div>
+    </div>
+
+    <!-- Ant Design table with Bootstrap wrapper -->
+    <div class="mt-4">
+      <a-table :columns="columns" :data-source="dataSource" :loading="loading" />
+    </div>
+  </div>
+</template>
+```
+
+**Examples:**
+
+✅ GOOD: Define in `assets/main.css`
+
+```css
+/* assets/main.css */
+.button-primary {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+}
+```
+
+✅ ACCEPTABLE: Global `<style>` in component
+
+```vue
+<style>
+.button-primary {
+  background-color: #007bff;
+  color: white;
+}
+</style>
+```
+
+❌ FORBIDDEN: `<style scoped>` (NEVER use)
+
+```vue
+<!-- DO NOT USE THIS -->
+<style scoped>
+.button {
+  /* scoped styles are not used */
+}
+</style>
+```
 
 ### 1. STRICT FILE CREATION RULES
 
@@ -63,8 +169,11 @@ The Vue/Nuxt project follows this folder structure:
 
 - **Assets** → [`assets/`](assets/)
 
-  - All static assets go here
-  - Organize by type (e.g., `assets/images/`, `assets/styles/`)
+  - **CSS/Styles**: Define all CSS here (PREFERRED approach)
+    - [`assets/main.css`](assets/main.css) - Main global styles
+    - [`assets/custom.css`](assets/custom.css) - Additional global CSS files
+    - CSS is global and reusable across all components
+  - Other assets: images, fonts, organize by type (e.g., `assets/images/`)
 
 - **Public** → [`public/`](public/) (Nuxt only)
 
@@ -110,9 +219,18 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Component styles here */
+<!-- STYLING PREFERENCES -->
+<!-- Option 1: Define CSS in assets/main.css (PREFERRED) -->
+<!-- Add global styles to assets/main.css and avoid inline styles -->
+
+<!-- Option 2: Use global <style> tag (if component-specific styles needed) -->
+<!--
+<style>
+/* Global component styles */
 </style>
+-->
+
+<!-- NEVER use <style scoped> - All CSS should be global -->
 ```
 
 #### Script Tag Order (MANDATORY)
@@ -228,7 +346,7 @@ export default {
   },
 
   methods: {
-    async fetchUsers() {
+    async getUsers() {
       // Build conditions object with multiple operators
       let conditions = {
         status: "active", // status = 'active'
@@ -270,7 +388,7 @@ export default {
   },
 
   async mounted() {
-    await this.fetchUsers();
+    await this.getUsers();
   },
 };
 </script>
@@ -394,7 +512,7 @@ export default {
   },
 
   methods: {
-    async fetchUsers() {
+    async getUsers() {
       // Build payload
       let data = {
         schema: get_schema(),
@@ -543,11 +661,71 @@ export default {
 
 ### 6. COMPONENT REUSE GUIDELINES
 
-#### Atomic Design Approach (if applicable):
+#### Pre-Designed Component Folder Structure
 
-- **Atoms**: Basic UI elements (buttons, inputs, labels)
-- **Molecules**: Groups of atoms (form fields, search bars)
-- **Organisms**: Complex UI sections (headers, sidebars)
+The project has a well-defined, pre-designed component structure. **ALWAYS check these pre-designed components first** before creating new ones:
+
+```
+components/
+├── Control/              ← Form/Input controls
+│   ├── Master/           ← Master data popups/selectors
+│   ├── Popup/            ← Popup components
+│   ├── Box.vue
+│   ├── Button.vue
+│   ├── ButtonBar.vue
+│   ├── ButtonFloat.vue
+│   ├── Checkbox.vue
+│   ├── CheckButton.vue
+│   ├── Datetime.vue
+│   ├── Dropdownlist.vue
+│   ├── Input.vue
+│   ├── Label.vue
+│   ├── Tag.vue
+│   └── Upload.vue
+├── ControlMobile/        ← Mobile-specific controls
+├── Grid/                 ← Table/Grid components
+│   ├── AG.vue            ← AG Grid
+│   ├── AntTable.vue      ← Ant Design Table
+│   ├── CustomDropdownEditor.vue
+│   ├── CustomDropdownEditorEnable.vue
+│   └── HtmlTable.vue
+├── Panel/                ← Panel/Form containers
+│   └── FormView.vue
+├── Partial/              ← Layout partials
+│   ├── Footer.vue
+│   ├── Header.vue
+│   └── Sidebar.vue
+└── View/                 ← View components
+    ├── Form.vue
+    ├── PDFViewer.vue
+    └── Template.vue
+```
+
+#### Component Usage Guidelines
+
+1. **ALWAYS check these pre-designed components first** before creating new ones
+2. **Reuse existing components** - they are already designed and tested
+3. **Control/** - Use for all form inputs:
+   - [`Control/Input.vue`](components/Control/Input.vue) - Text input fields
+   - [`Control/Datetime.vue`](components/Control/Datetime.vue) - Date/time pickers
+   - [`Control/Dropdownlist.vue`](components/Control/Dropdownlist.vue) - Select dropdowns
+   - [`Control/Button.vue`](components/Control/Button.vue) - Standard buttons
+   - [`Control/Checkbox.vue`](components/Control/Checkbox.vue) - Checkbox inputs
+   - [`Control/Upload.vue`](components/Control/Upload.vue) - File upload components
+   - And other form control components
+4. **Grid/** - Use for all tables:
+   - [`Grid/AG.vue`](components/Grid/AG.vue) - AG Grid integration
+   - [`Grid/AntTable.vue`](components/Grid/AntTable.vue) - Ant Design Table
+   - [`Grid/HtmlTable.vue`](components/Grid/HtmlTable.vue) - Standard HTML tables
+5. **Panel/** - Use [`Panel/FormView.vue`](components/Panel/FormView.vue) for form containers
+6. **Partial/** - Use for layout sections:
+   - [`Partial/Header.vue`](components/Partial/Header.vue) - Page headers
+   - [`Partial/Footer.vue`](components/Partial/Footer.vue) - Page footers
+   - [`Partial/Sidebar.vue`](components/Partial/Sidebar.vue) - Sidebar navigation
+7. **View/** - Use for view templates:
+   - [`View/Form.vue`](components/View/Form.vue) - Form view templates
+   - [`View/PDFViewer.vue`](components/View/PDFViewer.vue) - PDF viewing components
+   - [`View/Template.vue`](components/View/Template.vue) - General templates
 
 #### Component Reuse Decision Tree:
 
@@ -659,7 +837,7 @@ export default {
     },
 
     // Async method with backend call
-    async fetchData() {
+    async getData() {
       this.loading = true;
       try {
         let data = {
@@ -671,7 +849,7 @@ export default {
 
         this.items = await request("/select", data, "get");
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error getting data:", error);
       } finally {
         this.loading = false;
       }
@@ -735,7 +913,7 @@ export default {
   async mounted() {
     console.log("Component mounted");
     // Load initial data
-    await this.fetchData();
+    await this.getData();
   },
 
   // Runs before component is updated
@@ -806,7 +984,7 @@ export default {
     fromDate: {
       handler(newVal) {
         if (newVal && this.toDate) {
-          this.fetchData();
+          this.getData();
         }
       },
       immediate: true,
@@ -1021,7 +1199,7 @@ export default {
   },
 
   methods: {
-    async fetchItems() {
+    async getItems() {
       this.loading = true;
       try {
         let data = {
@@ -1033,7 +1211,7 @@ export default {
 
         this.items = await request("/select", data, "get");
       } catch (error) {
-        console.error("Error fetching items:", error);
+        console.error("Error getting items:", error);
       } finally {
         this.loading = false;
       }
@@ -1041,7 +1219,7 @@ export default {
   },
 
   async mounted() {
-    await this.fetchItems();
+    await this.getItems();
   },
 };
 </script>
@@ -1141,7 +1319,8 @@ export default {
 - Keep components focused and single-purpose
 - Use meaningful prop names and provide defaults
 - Emit clear, descriptive events
-- Use `scoped` styles to prevent style leakage
+- **Define CSS in [`assets/main.css`](assets/main.css) (PREFERRED) or use global `<style>` tag**
+- **NEVER use `<style scoped>`**
 
 ### Error Handling
 
@@ -1152,7 +1331,7 @@ export default {
     // computed properties first
   },
   methods: {
-    async fetchData() {
+    async getData() {
       this.loading = true;
       try {
         let data = {
@@ -1164,7 +1343,7 @@ export default {
 
         this.items = await request("/select", data, "get");
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error getting data:", error);
         alert("Failed to load data");
       } finally {
         this.loading = false;
