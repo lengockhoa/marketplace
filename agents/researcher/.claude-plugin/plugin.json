@@ -1,0 +1,9 @@
+{
+  "name": "researcher",
+  "version": "1.0.0",
+  "description": "Researcher Agent - Codebase exploration & technology research",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}

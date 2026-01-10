@@ -1,14 +1,39 @@
 {
   "name": "lenk-marketplace",
+  "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
   "owner": {
     "name": "lengockhoa"
   },
-  "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
   "plugins": [
     {
-      "name": "lenk-marketplace",
-      "source": "./",
-      "description": "Core marketplace package with agents, skills, and commands."
+      "name": "vue-expert",
+      "source": "./skills/vue-expert",
+      "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns"
+    },
+    {
+      "name": "security-auditor",
+      "source": "./agents/security",
+      "description": "Security Auditor Agent - OWASP vulnerabilities & security hardening"
+    },
+    {
+      "name": "architect",
+      "source": "./agents/architect",
+      "description": "System Architect Agent - Architecture design & implementation plans"
+    },
+    {
+      "name": "debugger",
+      "source": "./agents/debugger",
+      "description": "Debugger Agent - Root cause analysis & bug fixing"
+    },
+    {
+      "name": "librarian",
+      "source": "./agents/librarian",
+      "description": "Librarian Agent - GitHub code search & documentation research"
+    },
+    {
+      "name": "researcher",
+      "source": "./agents/researcher",
+      "description": "Researcher Agent - Codebase exploration & technology research"
     }
   ]
 }

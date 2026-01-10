@@ -1,0 +1,9 @@
+{
+  "name": "debugger",
+  "version": "1.0.0",
+  "description": "Debugger Agent - Root cause analysis & bug fixing",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}
