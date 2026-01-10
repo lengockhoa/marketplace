@@ -1,24 +1,89 @@
 {
-  "name": "LeNK Marketplace Registry",
-  "lastUpdated": "2026-01-06",
-  "plugins": [
+  "packages": [
     {
-      "id": "vue-expert",
-      "name": "Vue.js Expert",
-      "description": "Vue 3 Composition API & Pinia support",
-      "category": "Skills"
-    },
-    {
-      "id": "security-auditor",
-      "name": "Security Auditor",
-      "description": "OWASP & Security Hardening",
-      "category": "Agents"
-    },
-    {
-      "id": "architect",
-      "name": "System Architect",
-      "description": "Architecture Design & Implementation Plans",
-      "category": "Agents"
+      "id": "lenk-marketplace",
+      "name": "LeNK Marketplace",
+      "description": "Core marketplace package with agents, skills, and commands.",
+      "version": "1.0.0",
+      "plugins": [
+        {
+          "id": "vue-expert",
+          "name": "Vue.js Expert",
+          "description": "Vue 3 Composition API & Pinia support",
+          "category": "Skills",
+          "path": "skills/vue-expert/SKILL.md"
+        },
+        {
+          "id": "security-auditor",
+          "name": "Security Auditor",
+          "description": "OWASP & Security Hardening",
+          "category": "Agents",
+          "path": "agents/security/AGENT.md"
+        },
+        {
+          "id": "architect",
+          "name": "System Architect",
+          "description": "Architecture Design & Implementation Plans",
+          "category": "Agents",
+          "path": "agents/architect/AGENT.md"
+        },
+        {
+          "id": "debugger",
+          "name": "Debugger",
+          "description": "Root Cause Analysis & Bug Fixing",
+          "category": "Agents",
+          "path": "agents/debugger/AGENT.md"
+        },
+        {
+          "id": "librarian",
+          "name": "Librarian",
+          "description": "GitHub Code Search & Documentation Research",
+          "category": "Agents",
+          "path": "agents/librarian/AGENT.md"
+        },
+        {
+          "id": "researcher",
+          "name": "Researcher",
+          "description": "Codebase Exploration & Technology Research",
+          "category": "Agents",
+          "path": "agents/researcher/AGENT.md"
+        },
+        {
+          "id": "document",
+          "name": "Document",
+          "description": "Generate or update documentation for the specified code",
+          "category": "Slash Commands",
+          "path": "slash-commands/document.md"
+        },
+        {
+          "id": "explain",
+          "name": "Explain",
+          "description": "Provide a high-level explanation of the current file or specific code blocks",
+          "category": "Slash Commands",
+          "path": "slash-commands/explain.md"
+        },
+        {
+          "id": "refactor",
+          "name": "Refactor",
+          "description": "Suggest and implement refactorings for the specified code",
+          "category": "Slash Commands",
+          "path": "slash-commands/refactor.md"
+        },
+        {
+          "id": "review",
+          "name": "Review",
+          "description": "Perform a comprehensive code review of the current changes or specific files",
+          "category": "Slash Commands",
+          "path": "slash-commands/review.md"
+        },
+        {
+          "id": "test",
+          "name": "Test",
+          "description": "Generate tests for the current code or specific functions",
+          "category": "Slash Commands",
+          "path": "slash-commands/test.md"
+        }
+      ]
     }
   ]
 }
