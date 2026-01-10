@@ -1,12 +1,21 @@
-# CLAUDE.md Template
+# Project Instructions
 
-This file contains project-specific instructions for Claude.
+## Documentation
 
-## Project Context
-- **Framework**: [e.g., React, Node.js]
-- **Style**: [e.g., Functional, OOP]
+Always read these files at session start:
 
-## Rules
-- Always use `yarn` for package management.
-- Prefer `const` over `let`.
-- [Add your custom rules here]
+- docs/MEMORY.md - Project memory and decisions
+- docs/PROJECT.md - Project context and setup
+
+## File Creation Rules
+
+- Place all new documentation or informational files in the `docs/` folder.
+- Place all new automated test files in the `test/` folder.
+
+## After Significant Work
+
+Update or create docs/MEMORY.md with:
+
+- Decisions made
+- Tasks completed
+- New learnings
