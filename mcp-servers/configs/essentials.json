@@ -1,15 +1,18 @@
 {
+  "$comment": "Template MCP configuration showing essential servers. Copy configurations from here to your ~/.claude/.mcp.json or project .mcp.json as needed.",
   "mcpServers": {
-    "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
-    },
     "github": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-github"],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_TOKEN_HERE"
-      }
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub MCP server for repository access, code search, and commit analysis. Required by Librarian agent."
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "description": "Memory MCP server for persistent knowledge storage across sessions."
     }
   }
 }

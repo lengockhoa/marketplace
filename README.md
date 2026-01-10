@@ -18,10 +18,10 @@ Once installed, restart Claude Code and use:
 
 ## 📂 Structure
 
-- `agents/`: Specialized subagent definitions (`AGENT.md`). Includes: **Architect, Debugger, Researcher, and Security Auditor**.
+- `agents/`: Specialized subagent definitions (`AGENT.md`). Includes: **Architect, Debugger, Researcher, Security Auditor, and Librarian** (GitHub research agent).
 - `skills/`: Reusable agent skills (`SKILL.md`). Includes: **Vue.js Expert**.
 - `slash-commands/`: Custom slash commands (`.md`). Includes: **/review, /refactor, /document, /explain, and /test**.
-- `mcp-servers/`: Configuration files for Model Context Protocol servers. Includes **Memory and GitHub** server configs.
+- `mcp-servers/configs/`: MCP server configuration templates (GitHub + Memory servers). Users manually integrate into their own `~/.claude/.mcp.json`.
 - `templates/`: Project-level templates (`CLAUDE.md`, `settings.json`, and **Conventional Commits**).
 
 ## 🚀 How to Use
@@ -51,6 +51,8 @@ Copy the directory of the agent you want into your project's `.claude/agents/` o
 ```bash
 cp -r agents/architect ~/.claude/agents/
 ```
+
+**Note for Librarian Agent**: This agent requires additional GitHub setup. See [SETUP_LIBRARIAN.md](SETUP_LIBRARIAN.md) for complete installation instructions including GitHub token configuration.
 
 ### Installing Slash Commands
 Copy the markdown file into `.claude/commands/` or `~/.claude/commands/`.
