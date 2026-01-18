@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "vue-expert",
+      "name": "unic-vue",
       "source": "./skills/unic-vue",
       "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns"
     },

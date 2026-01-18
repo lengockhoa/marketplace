@@ -7,7 +7,7 @@
       "version": "1.0.0",
       "plugins": [
         {
-          "id": "vue-expert",
+          "id": "unic-vue",
           "name": "Vue.js Expert",
           "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns",
           "category": "Skills",
