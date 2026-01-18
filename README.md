@@ -11,8 +11,9 @@ curl -sL "https://raw.githubusercontent.com/lengockhoa/marketplace/main/install-
 ```
 
 Once installed, restart Claude Code and use:
+
 - `/plugin browse` - See available tools
-- `/plugin add vue-expert` - Install the Vue.js Expert skill
+- `/plugin add unic-vue` - Install the Vue.js Expert skill
 - `/plugin add unic-sql` - Install the UNIC SQL skill
 
 ---
@@ -28,6 +29,7 @@ Once installed, restart Claude Code and use:
 ## 🚀 How to Use
 
 ### 1. Add this Marketplace to Claude Code
+
 Run the following command in your terminal to add this repository as a marketplace:
 
 ```bash
@@ -35,6 +37,7 @@ Run the following command in your terminal to add this repository as a marketpla
 ```
 
 ### 2. Install the Core Plugin
+
 Once the marketplace is added, install the core plugin to get all agents, skills, and commands:
 
 ```bash
@@ -44,9 +47,11 @@ Once the marketplace is added, install the core plugin to get all agents, skills
 ---
 
 ## 📂 Manual Installation (Optional)
+
 If you prefer not to use the plugin system, you can copy components manually:
 
 ### Installing Agents
+
 Copy the directory of the agent you want into your project's `.claude/agents/` or your global `~/.claude/agents/` directory.
 
 ```bash
@@ -56,6 +61,7 @@ cp -r agents/architect ~/.claude/agents/
 **Note for Librarian Agent**: This agent requires additional GitHub setup. See [SETUP_LIBRARIAN.md](SETUP_LIBRARIAN.md) for complete installation instructions including GitHub token configuration.
 
 ### Installing Slash Commands
+
 Copy the markdown file into `.claude/commands/` or `~/.claude/commands/`.
 
 ```bash
@@ -63,6 +69,7 @@ cp slash-commands/review.md ~/.claude/commands/
 ```
 
 ### Using Templates
+
 Copy the template content into your project's root `CLAUDE.md` or `.claude/settings.json`.
 
 ## 🤝 Contributing
