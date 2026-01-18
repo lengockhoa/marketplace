@@ -1,6 +1,16 @@
 ---
-name: vue-expert
-description: Specialized in Vue.js and Nuxt.js development (Vue 2 Options API, backend integration).
+name: unic-vue
+description: Specialized in Vue.js and Nuxt.js development (Vue 2 Options API, backend integration). Includes predefined components (ControlInput, ControlDatetime, ControlDropdownlist, ControlButton, GridAG, Popup) - use these before creating new ones.
+triggers:
+  - vue
+  - nuxt
+  - vue component
+  - vue form
+  - vue page
+  - control input
+  - control button
+  - ag grid
+  - ant design
 ---
 
 # Vue.js & Nuxt.js Expert Skill
@@ -25,6 +35,271 @@ The Vue/Nuxt project follows this folder structure:
 ```
 
 **IMPORTANT:** This project uses a **separate backend**, not Nuxt server routes. All backend communication goes through utility functions in `composables/`.
+
+## Predefined Components (CRITICAL - READ FIRST)
+
+**This skill includes a `components/` folder with predefined, reusable Vue components. These are REFERENCE components that should be used in the user's project.**
+
+### AI Instructions for Component Usage
+
+**MANDATORY RULES:**
+
+1. **ALWAYS use predefined components** from this skill's `components/` folder when they match the requirement
+2. **NEVER create new components** if a predefined component already exists
+3. **If no matching component exists**, inform the user and ask if they want to create a new one
+4. **Reference the `reference/` folder** for usage examples
+
+### Available Predefined Components
+
+```
+components/
+├── Control/              ← Form/Input controls (USE THESE!)
+│   ├── Input.vue         ← Text, password, search, textarea, number inputs
+│   ├── Datetime.vue      ← Date/time picker (supports date, month, year)
+│   ├── Dropdownlist.vue  ← Select dropdown (single/multiple)
+│   ├── Button.vue        ← Standard button with loading state
+│   ├── Checkbox.vue      ← Checkbox input
+│   ├── CheckButton.vue   ← Check button toggle
+│   ├── Label.vue         ← Form label with required indicator
+│   ├── Box.vue           ← Container box
+│   ├── ButtonBar.vue     ← Button group bar
+│   ├── ButtonFloat.vue   ← Floating action button
+│   ├── Tag.vue           ← Tag/badge component
+│   ├── Upload.vue        ← File upload component
+│   ├── Master/           ← Master data selectors
+│   │   └── BoxColumn.vue ← Column box layout
+│   └── Popup/            ← Modal/Popup components
+│       ├── Info.vue      ← Information popup
+│       ├── ModalInfo.vue ← Large modal popup
+│       ├── Confirm.vue   ← Confirmation dialog
+│       └── Reject.vue    ← Rejection dialog with reason
+├── ControlMobile/        ← Mobile-specific controls
+│   ├── Dropdownlist.vue  ← Mobile dropdown
+│   ├── PagingBar.vue     ← Mobile pagination
+│   └── UploadImage.vue   ← Mobile image upload
+├── Grid/                 ← Data table components (USE THESE!)
+│   ├── AG.vue            ← AG Grid (RECOMMENDED for data tables)
+│   ├── AntTable.vue      ← Ant Design Table alternative
+│   ├── HtmlTable.vue     ← Simple HTML table
+│   ├── CustomDropdownEditor.vue
+│   └── CustomDropdownEditorEnable.vue
+├── Panel/                ← Panel/Form containers
+│   └── FormView.vue      ← Form view wrapper
+├── Partial/              ← Layout partials
+│   ├── Header.vue        ← Page header
+│   ├── Footer.vue        ← Page footer
+│   └── Sidebar.vue       ← Sidebar navigation
+├── View/                 ← View components
+│   ├── Form.vue          ← Form view template
+│   └── PDFViewer.vue     ← PDF viewer component
+├── Template.vue          ← Page template
+└── PDFViewer.vue         ← PDF viewer (root level)
+```
+
+### Component Usage Examples
+
+See the `reference/` folder for complete examples:
+- `reference/form-example.vue` - Form with inputs, dropdowns, dates, buttons
+- `reference/grid-example.vue` - Data grid with AG Grid and filters
+- `reference/popup-example.vue` - Popup/modal usage patterns
+- `reference/composables-example.vue` - Composables usage (validation, API, session, etc.)
+
+### Quick Reference: Common Component Usage
+
+**Text Input:**
+```vue
+<ControlInput v-model="form.name" name="Name" :required="true" placeholder="Enter name" />
+```
+
+**Date Picker:**
+```vue
+<ControlDatetime v-model="form.date" name="Date" :required="true" />
+```
+
+**Dropdown Select:**
+```vue
+<ControlDropdownlist v-model="form.status" name="Status" :list="status_list" placeholder="Select" />
+```
+
+**Multiple Select:**
+```vue
+<ControlDropdownlist v-model="form.tags" name="Tags" :list="tag_list" :multiple="true" />
+```
+
+**Button:**
+```vue
+<ControlButton type="primary" name="Save" @onClick="onSave" />
+```
+
+**Confirm Popup:**
+```vue
+<ControlPopupConfirm :visible="show_confirm" :title="t('Confirm')" :message="t('Are you sure?')" @onClose="onClose" @onConfirm="onConfirm" />
+```
+
+**AG Grid (Data Table):**
+```vue
+<GridAG id="my_grid" :columns="columns" :rows="rows" :can_add="true" :can_edit="true" :can_delete="true" :table="table_name" :table_schema="table_schema" @onClickDetail="onClickDetail" @onAdd="onAdd" @reloadData="get_data" />
+```
+
+### Decision Tree: When to Use Predefined Components
+
+1. **Need a form input?** → Use `ControlInput`, `ControlDatetime`, or `ControlDropdownlist`
+2. **Need a button?** → Use `ControlButton`
+3. **Need a data table?** → Use `GridAG` (recommended) or `GridAntTable`
+4. **Need a popup/modal?** → Use `ControlPopupConfirm`, `ControlPopupInfo`, or `ControlPopupReject`
+5. **Need file upload?** → Use `ControlUpload`
+6. **Component doesn't exist?** → **ASK THE USER** before creating a new one
+
+## Predefined Composables (CRITICAL - USE THESE!)
+
+**This skill includes a `composables/` folder with utility functions. These are auto-imported in Nuxt and should be used directly.**
+
+### Available Composable Files
+
+```
+composables/
+├── utils.js          ← General utility functions (MOST USED)
+├── useRequest.js     ← API request functions
+├── useSession.js     ← Session/localStorage management
+├── useTranslation.js ← Translation (i18n) functions
+├── state.js          ← Global reactive state & config
+├── masterApi.js      ← Master data API helpers
+├── userObj.js        ← User object utilities
+├── useWebSocket.js   ← WebSocket connection
+└── indexDBStore.js   ← IndexedDB storage
+```
+
+### Frequently Used Functions
+
+#### Validation & Checking (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `check_is_null_or_blank(value)` | Check if value is null, undefined, empty string, or empty array/object | `if (check_is_null_or_blank(this.name)) return;` |
+| `check_is_zero(value)` | Check if value is zero or "0" | `if (check_is_zero(this.amount)) return;` |
+
+#### Date/Time Functions (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `dayjs(date)` | Day.js wrapper for date manipulation | `dayjs().format('YYYY-MM-DD')` |
+| `formatDate(date, type)` | Format date with type: 'date', 'datetime', 'time', 'read_date', 'read_datetime' | `formatDate(this.date, 'read_date')` → "25/12/2024" |
+| `getDateList(fromDate, toDate)` | Get array of dates between two dates | `getDateList('2024-01-01', '2024-01-07')` |
+
+#### Number Functions (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `formatNumber(num, separator, decimal)` | Format number with thousands separator | `formatNumber(1234567, '.', 2)` → "1.234.567.00" |
+
+#### Data Conversion (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `convertToDropdownValue(list, value_col, label_col)` | Convert array to dropdown format `[{value, label}]` | `convertToDropdownValue(users, 'id', 'name')` |
+| `convertListToObject(list, key_col, value_col)` | Convert array to key-value object | `convertListToObject(users, 'id', 'name')` |
+| `convertListToListOfField(list, key_col)` | Extract single field from array | `convertListToListOfField(users, 'id')` → [1, 2, 3] |
+| `sortListByValueAsc(list)` | Sort dropdown list by value ascending | `sortListByValueAsc(options)` |
+
+#### Navigation (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `go_to_page(page, query)` | Navigate to page with optional query | `go_to_page('/users', { id: 1 })` |
+| `go_back(fallback)` | Go back or to fallback page | `go_back('/home')` |
+| `move_to_top()` | Scroll to top of page | `move_to_top()` |
+
+#### Messages (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `show_message(type, content, duration)` | Show Ant Design message (success/error/warning/info) | `show_message('success', 'Saved!')` |
+
+#### Utilities (from `utils.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `bodautiengviet(str)` | Remove Vietnamese diacritics for search | `bodautiengviet('Việt Nam')` → "viet nam" |
+| `sleep(ms)` | Async delay | `await sleep(1000)` |
+| `screen_height()` | Get window height | `screen_height()` |
+| `arraysContainAllElements(arr1, arr2)` | Check if arr1 contains all elements of arr2 | `arraysContainAllElements([1,2,3], [1,2])` → true |
+
+### API Request Functions (from `useRequest.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `request(url, data, method, with_loading)` | Main API request function | `await request('/select', data, 'get')` |
+| `requestForm(url, data, method)` | Form data request (file upload) | `await requestForm('/upload', formData)` |
+| `requestLogin(data)` | Login API request | `await requestLogin({ username, password })` |
+| `requestSendmail(data)` | Send email API request | `await requestSendmail({ to, subject, body })` |
+
+### Session Management (from `useSession.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `getSession(key)` | Get value from session | `getSession('username')` |
+| `setSession(key, value, expiration)` | Set session value (default 2h expiry) | `setSession('token', 'abc123')` |
+| `clearSession()` | Clear all session data | `clearSession()` |
+| `refreshSession(expiration)` | Refresh session expiry | `refreshSession()` |
+
+### Translation (from `useTranslation.js`)
+
+| Function | Description | Usage |
+|----------|-------------|-------|
+| `t(str)` | Translate string | `t('Save')` → "บันทึก" (if Thai) |
+| `translate(page)` | Load translations for page | `await translate()` |
+
+### Global State & Config (from `state.js`)
+
+| Variable/Function | Description | Usage |
+|-------------------|-------------|-------|
+| `state` | Global reactive state object | `state.loading`, `state.username` |
+| `get_schema()` | Get current database schema (qas/prd) | `get_schema()` |
+| `baseurl()` | Get API base URL | `baseurl()` |
+| `menu()` | Get menu items for current environment | `menu()` |
+
+### Quick Reference: Common Patterns
+
+**Validate before API call:**
+```javascript
+if (check_is_null_or_blank(this.from_date) || check_is_null_or_blank(this.to_date)) {
+  show_message('error', 'Please select date range');
+  return;
+}
+```
+
+**Convert data for dropdown:**
+```javascript
+// API returns: [{ id_user: 1, fullname: 'John' }, ...]
+// Convert to dropdown format: [{ value: 1, label: 'John' }, ...]
+this.user_list = convertToDropdownValue(response, 'id_user', 'fullname');
+```
+
+**Format dates for display:**
+```javascript
+// Database format: '2024-12-25'
+// Display format: '25/12/2024'
+formatDate(row.created_date, 'read_date')
+```
+
+**Show success/error messages:**
+```javascript
+try {
+  await request('/insert', data, 'post');
+  show_message('success', t('Saved successfully'));
+} catch (error) {
+  show_message('error', t('Error saving data'));
+}
+```
+
+**Check user session:**
+```javascript
+const username = getSession('username');
+if (check_is_null_or_blank(username)) {
+  go_to_page('/login');
+  return;
+}
+```
 
 ## Core Principles
 
