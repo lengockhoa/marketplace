@@ -20,7 +20,7 @@ For complete examples, see:
 | Type | Use for |
 |------|---------|
 | `VARCHAR` | Text, dates, timestamps, JSON, UUIDs |
-| `NUMERIC(16,2)` | All numbers (use precision 16,2 for money) |
+| `NUMERIC` | All numbers (use `NUMERIC(16,2)` only when decimals are required, e.g., money) |
 | `BOOLEAN` | True/false only |
 
 **NEVER use:** DATE, TIMESTAMP, INTEGER, BIGINT, JSON, JSONB, UUID, TEXT
@@ -57,13 +57,42 @@ CREATE TABLE schema_name.table_name (
 | `RETURNS SETOF table_name` | Return from existing table |
 | `RETURNS JSONB` | Dynamic/unclear structure |
 
+## Discovering DB Structure (MANDATORY FIRST STEP)
+
+Before writing any function or view, **AI must query the database to understand table structure**:
+
+```sql
+-- Check table structure (columns, types)
+\d schema_name.table_name
+
+-- Or use SQL query
+SELECT column_name, data_type, is_nullable, column_default
+FROM information_schema.columns
+WHERE table_schema = 'schema_name' AND table_name = 'table_name'
+ORDER BY ordinal_position;
+
+-- List all tables in schema
+\dt schema_name.*
+
+-- List all views in schema
+\dv schema_name.*
+
+-- Check existing functions
+\df schema_name.*
+```
+
 ## Workflow (MANDATORY)
 
 ```
-Step 1: CREATE VIEW first (separate SQL file/statement)
+Step 0: QUERY table/view structure first (use \d or information_schema)
            ↓
-Step 2: CREATE FUNCTION with RETURNS SETOF view_name
+Step 1: CHECK if view already exists (\dv schema_name.*)
+           ↓
+Step 2: If view exists → CREATE FUNCTION with RETURNS SETOF view_name
+         If view missing → CREATE VIEW first, then CREATE FUNCTION
 ```
+
+**If view already exists, skip view creation and create the function based on that view.**
 
 **NEVER:**
 - Create view inside function
@@ -71,7 +100,7 @@ Step 2: CREATE FUNCTION with RETURNS SETOF view_name
 
 ```sql
 -- GOOD: View exists separately, function references it
-CREATE VIEW schema_name.v_report AS SELECT ...;  -- Step 1 (run first)
+CREATE VIEW schema_name.v_report AS SELECT ...;  -- Step 1 (only if view missing)
 CREATE FUNCTION fn_get() RETURNS SETOF schema_name.v_report ...;  -- Step 2
 
 -- BAD: RETURNS TABLE
