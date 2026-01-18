@@ -25,6 +25,30 @@ This file tracks decisions, completed tasks, and learnings for the Claude Code M
 
 **Status**: Completed
 
+### Task: Performance-Optimized Templates
+
+**Goal**: Tạo templates tiết kiệm token, hỗ trợ Vue/Nuxt và PostgreSQL.
+
+**Templates Created:**
+1. `templates/CLAUDE.md.template` - Base performance-optimized (mọi dự án)
+2. `templates/CLAUDE-nuxt-postgres.md.template` - Vue/Nuxt + PostgreSQL
+3. `templates/CLAUDE-postgres.md.template` - PostgreSQL only
+
+**Template Selection:**
+- User tạo file `.claude-template` trong project root
+- Nội dung: `nuxt-postgres`, `postgres`, hoặc để trống (default)
+- Script tự động chọn template phù hợp
+
+**Key Features:**
+- Task classification (DIRECT/STANDARD/COMPLEX)
+- Quick routing table
+- Anti-patterns to avoid
+- Vue 2 Options API structure
+- PostgreSQL naming conventions & optimization
+- Tiết kiệm token: tables thay vì paragraphs
+
+**Status**: Completed
+
 ---
 
 ## Recent Work (2026-01-10)

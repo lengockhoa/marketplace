@@ -1,4 +1,4 @@
-# Project Instructions (Nuxt/Vue + PostgreSQL)
+# Project Instructions (PostgreSQL)
 
 ## Core Principle
 
@@ -17,62 +17,6 @@
 **DON'T:** Repeat questions, explain before executing, filler language
 
 **DO:** Execute immediately, code first, brief explanation only if needed
-
----
-
-## Vue/Nuxt Stack
-
-### Structure
-
-```
-components/     # Reusable components (auto-imported)
-composables/    # Utilities, API calls (auto-imported)
-pages/          # Routes (file-based)
-layouts/        # Page layouts
-assets/         # CSS (main.css), images
-```
-
-### Vue 2 Options API Order (MANDATORY)
-
-```javascript
-export default {
-  computed: {},   // 1. Computed
-  data() {},      // 2. Data
-  methods: {},    // 3. Methods
-  mounted() {},   // 4. Lifecycle
-  watch: {}       // 5. Watchers
-}
-```
-
-### CSS Rules
-
-- **NEVER use `<style scoped>`**
-- Define CSS in `assets/main.css` (preferred)
-- Use Bootstrap 5 + Ant Design Vue
-
-### API Pattern
-
-```javascript
-let data = {
-  schema: get_schema(),
-  table: "table_name",
-  conditions: JSON.stringify({ field: value }),
-  order_by: ["field desc"]
-};
-this.rows = await request("/select", data, "get");
-```
-
-### Condition Operators
-
-| Operator | SQL | Example |
-|----------|-----|---------|
-| (none) | = | `{ status: "active" }` |
-| (>) | > | `{ "(>)price": 100 }` |
-| (<) | < | `{ "(<)qty": 50 }` |
-| (>=) | >= | `{ "(>=)date": "2024-01-01" }` |
-| (<=) | <= | `{ "(<=)date": "2024-12-31" }` |
-| (like) | LIKE | `{ "(like)name": "%john%" }` |
-| (in) | IN | `{ "(in)id": [1,2,3] }` |
 
 ---
 
@@ -116,13 +60,18 @@ CREATE TABLE table_name (
 - **Always create views** for complex queries
 - **Date format:** `'YYYY-MM-DD HH24:MI:SS'` as VARCHAR
 
-### SQL Workflow
+---
 
-**AI suggests SQL only. User runs manually.**
+## SQL Workflow
+
+**AI suggests SQL only. User runs manually via psql.**
 
 ```bash
-# Use psql to query
+# Query data
 psql -U username -d database -c "SELECT * FROM v_users LIMIT 10;"
+
+# Run SQL file
+psql -U username -d database -f script.sql
 ```
 
 ### Common Patterns
@@ -136,23 +85,78 @@ LIMIT 20 OFFSET 0
 
 -- Soft delete
 WHERE deleted_at IS NULL
+
+-- Join tables (no FK, manual)
+SELECT u.*, o.*
+FROM users u
+JOIN orders o ON o.id_users = u.id_users
+WHERE u.id_users = 'uuid-here';
+```
+
+### Index Guidelines
+
+```sql
+-- Single column
+CREATE INDEX idx_users_email ON users(email);
+
+-- Composite index
+CREATE INDEX idx_orders_user_date ON orders(id_users, created_at DESC);
+
+-- Partial index
+CREATE INDEX idx_orders_active ON orders(status) WHERE deleted_at IS NULL;
+```
+
+### Query Optimization
+
+**Use EXPLAIN ANALYZE:**
+```sql
+EXPLAIN ANALYZE SELECT * FROM v_users WHERE email = 'test@example.com';
+```
+
+**Avoid:**
+- `SELECT *` in production
+- Functions on indexed columns in WHERE
+- OR conditions (prefer UNION)
+- NOT IN with subqueries (use NOT EXISTS)
+
+### Common Functions
+
+```sql
+-- String
+LOWER(), UPPER(), TRIM(), CONCAT(), SUBSTRING()
+
+-- Date (output as VARCHAR)
+TO_CHAR(now(), 'YYYY-MM-DD HH24:MI:SS')
+
+-- Aggregation
+COUNT(), SUM(), AVG(), MIN(), MAX(), STRING_AGG()
+
+-- Window
+ROW_NUMBER(), RANK(), LAG(), LEAD()
+```
+
+### Transactions
+
+```sql
+BEGIN;
+-- operations...
+COMMIT;
+
+-- Or with savepoints
+BEGIN;
+SAVEPOINT sp1;
+-- operations...
+ROLLBACK TO sp1;  -- if needed
+COMMIT;
 ```
 
 ---
 
-## Reusability
+## Security
 
-**Before creating new files:**
-
-1. Check `components/` for existing components
-2. Check `composables/` for existing utilities
-3. Ask permission if new file needed
-
-**Pre-designed components to use:**
-- `Control/` - Form inputs (Input, Button, Datetime, Dropdownlist)
-- `Grid/` - Tables (AG, AntTable, HtmlTable)
-- `Panel/` - Form containers
-- `Partial/` - Header, Footer, Sidebar
+- Always use parameterized queries
+- Never concatenate user input in SQL
+- Use LEAST PRIVILEGE for DB users
 
 ---
 

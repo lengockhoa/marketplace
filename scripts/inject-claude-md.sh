@@ -5,7 +5,8 @@
 #
 # Templates available:
 # - CLAUDE.md.template (default) - Base performance-optimized
-# - CLAUDE-nuxt-postgres.md.template - Vue/Nuxt + PostgreSQL specific
+# - CLAUDE-nuxt-postgres.md.template - Vue/Nuxt + PostgreSQL
+# - CLAUDE-postgres.md.template - PostgreSQL only
 
 PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(dirname "$(dirname "$0")")}"
 
@@ -20,6 +21,9 @@ fi
 case "$TEMPLATE_PREF" in
     "nuxt-postgres"|"vue"|"nuxt")
         TEMPLATE_FILE="${PLUGIN_ROOT}/templates/CLAUDE-nuxt-postgres.md.template"
+        ;;
+    "postgres"|"postgresql"|"sql")
+        TEMPLATE_FILE="${PLUGIN_ROOT}/templates/CLAUDE-postgres.md.template"
         ;;
     *)
         TEMPLATE_FILE="${PLUGIN_ROOT}/templates/CLAUDE.md.template"
