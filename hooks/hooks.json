@@ -1,0 +1,16 @@
+{
+  "description": "Auto-inject CLAUDE.md template into session context for team standardization",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/inject-claude-md.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 {
   "name": "lenk-marketplace",
-  "version": "1.0.0",
-  "description": "LeNK's essential agents, skills, and slash commands for Claude Code.",
+  "version": "1.1.0",
+  "description": "LeNK's essential agents, skills, and slash commands for Claude Code. Auto-injects team CLAUDE.md template.",
   "author": {
     "name": "LeNK"
   },
   "homepage": "https://github.com/lengockhoa/marketplace",
   "repository": "https://github.com/lengockhoa/marketplace",
-  "license": "MIT"
+  "license": "MIT",
+  "hooks": "./hooks/hooks.json"
 }

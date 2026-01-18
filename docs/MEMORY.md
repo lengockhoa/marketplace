@@ -2,6 +2,26 @@
 
 This file tracks decisions, completed tasks, and learnings for the Claude Code Marketplace project.
 
+## Recent Work (2026-01-18)
+
+### Task: SessionStart Hook for Auto-Inject CLAUDE.md
+
+**Goal**: Automatically inject CLAUDE.md template vào context khi team member start session.
+
+**Files to Create:**
+- `hooks/hooks.json` - SessionStart hook definition
+- `scripts/inject-claude-md.sh` - Script inject template
+- Update `plugin.json` - Reference hooks
+
+**Architecture Decision:**
+- Sử dụng SessionStart hook thay vì modify user files
+- Template được inject vào context, không sửa file của user
+- Mỗi session tự động có team instructions
+
+**Status**: In Progress
+
+---
+
 ## Recent Work (2026-01-10)
 
 ### Task: Librarian Agent Implementation
