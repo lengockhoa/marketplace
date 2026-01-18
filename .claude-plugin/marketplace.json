@@ -7,8 +7,13 @@
   "plugins": [
     {
       "name": "vue-expert",
-      "source": "./skills/vue-expert",
+      "source": "./skills/unic-vue",
       "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns"
+    },
+    {
+      "name": "unic-sql",
+      "source": "./skills/unic-sql",
+      "description": "PostgreSQL SQL writing conventions for UNIC projects."
     },
     {
       "name": "security-auditor",

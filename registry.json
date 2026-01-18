@@ -9,9 +9,16 @@
         {
           "id": "vue-expert",
           "name": "Vue.js Expert",
-          "description": "Vue 3 Composition API & Pinia support",
+          "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns",
           "category": "Skills",
-          "path": "skills/vue-expert/SKILL.md"
+          "path": "skills/unic-vue/SKILL.md"
+        },
+        {
+          "id": "unic-sql",
+          "name": "UNIC SQL",
+          "description": "PostgreSQL SQL writing conventions for UNIC projects.",
+          "category": "Skills",
+          "path": "skills/unic-sql/SKILL.md"
         },
         {
           "id": "security-auditor",

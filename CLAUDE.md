@@ -46,7 +46,7 @@ Each component type has a specific file format and YAML frontmatter structure:
 2. **Skills** (`skills/*/SKILL.md`):
    - YAML frontmatter: `name`, `description`, `triggers`
    - Markdown body: Reusable procedures/knowledge for agents
-   - Example: `skills/vue-expert/SKILL.md` - Vue.js development expertise
+   - Example: `skills/unic-vue/SKILL.md` - Vue.js development expertise
    - Loaded by agents when relevant to task
 
 3. **Slash Commands** (`slash-commands/*.md`):

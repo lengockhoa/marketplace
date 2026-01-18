@@ -12,14 +12,15 @@ curl -sL "https://raw.githubusercontent.com/lengockhoa/marketplace/main/install-
 
 Once installed, restart Claude Code and use:
 - `/plugin browse` - See available tools
-- `/plugin add vue-expert` - Install a specific tool
+- `/plugin add vue-expert` - Install the Vue.js Expert skill
+- `/plugin add unic-sql` - Install the UNIC SQL skill
 
 ---
 
 ## 📂 Structure
 
 - `agents/`: Specialized subagent definitions (`AGENT.md`). Includes: **Architect, Debugger, Researcher, Security Auditor, and Librarian** (GitHub research agent).
-- `skills/`: Reusable agent skills (`SKILL.md`). Includes: **Vue.js Expert**.
+- `skills/`: Reusable agent skills (`SKILL.md`). Includes: **Vue.js Expert** and **UNIC SQL**.
 - `slash-commands/`: Custom slash commands (`.md`). Includes: **/review, /refactor, /document, /explain, and /test**.
 - `mcp-servers/configs/`: MCP server configuration templates (GitHub + Memory servers). Users manually integrate into their own `~/.claude/.mcp.json`.
 - `templates/`: Project-level templates (`CLAUDE.md`, `settings.json`, and **Conventional Commits**).
