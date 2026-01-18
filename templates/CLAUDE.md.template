@@ -1,21 +1,60 @@
 # Project Instructions
 
+## Core Principle
+
+**Default to Direct Action. Only delegate when truly necessary.**
+
+## Task Classification
+
+| Type | Scope | Action |
+|------|-------|--------|
+| DIRECT | ≤10 lines, 1 file | Execute immediately |
+| STANDARD | 11-50 lines, 2-3 files | Use plugins if needed |
+| COMPLEX | >50 lines, >3 files | Use /feature-dev |
+
+## Quick Routing
+
+| Request | Action |
+|---------|--------|
+| Fix typo/syntax | Direct edit |
+| Add log/print | Direct edit |
+| "What does X do?" | Direct answer |
+| Review <50 lines | Direct review |
+| Review >50 lines | /code-review |
+| Complex feature | /feature-dev |
+
+## Response Rules
+
+**DON'T:** Repeat questions, explain before executing, use filler language
+
+**DO:** Execute immediately, show code directly, brief explanation only if needed
+
+## Anti-Patterns
+
+**Never:** Call plugins for <10 line changes, over-explain, ask obvious questions
+
+**Always:** Fix obvious errors directly, show code first, exit early when done
+
+## When to Confirm
+
+**Must ask before:** Destructive operations, security changes, ambiguous requests
+
+## Package Manager
+
+Use **yarn** for all commands:
+- `yarn` / `yarn add` / `yarn remove` / `yarn dev` / `yarn build`
+
 ## Documentation
 
-Always read these files at session start:
+Read at session start:
+- docs/MEMORY.md - Project memory
+- docs/PROJECT.md - Project context
 
-- docs/MEMORY.md - Project memory and decisions
-- docs/PROJECT.md - Project context and setup
+## File Rules
 
-## File Creation Rules
-
-- Place all new documentation or informational files in the `docs/` folder.
-- Place all new automated test files in the `test/` folder.
+- New docs → `docs/`
+- New tests → `test/`
 
 ## After Significant Work
 
-Update or create docs/MEMORY.md with:
-
-- Decisions made
-- Tasks completed
-- New learnings
+Update docs/MEMORY.md with: decisions, tasks completed, learnings

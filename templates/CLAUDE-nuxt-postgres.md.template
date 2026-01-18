@@ -1,0 +1,130 @@
+# Project Instructions (Nuxt/Vue + PostgreSQL)
+
+## Core Principle
+
+**Direct Action. Delegate only when necessary.**
+
+## Task Routing
+
+| Type | Scope | Action |
+|------|-------|--------|
+| DIRECT | ≤10 lines, 1 file | Execute immediately |
+| STANDARD | 11-50 lines, 2-3 files | Use plugins if needed |
+| COMPLEX | >50 lines, >3 files | /feature-dev |
+
+## Response Rules
+
+**DON'T:** Repeat questions, explain before executing, filler language
+
+**DO:** Execute immediately, code first, brief explanation only if needed
+
+---
+
+## Vue/Nuxt Stack
+
+### Structure
+
+```
+components/     # Reusable components (auto-imported)
+composables/    # Utilities, API calls (auto-imported)
+pages/          # Routes (file-based)
+layouts/        # Page layouts
+assets/         # CSS (main.css), images
+```
+
+### Vue 2 Options API Order (MANDATORY)
+
+```javascript
+export default {
+  computed: {},   // 1. Computed
+  data() {},      // 2. Data
+  methods: {},    // 3. Methods
+  mounted() {},   // 4. Lifecycle
+  watch: {}       // 5. Watchers
+}
+```
+
+### CSS Rules
+
+- **NEVER use `<style scoped>`**
+- Define CSS in `assets/main.css` (preferred)
+- Use Bootstrap 5 + Ant Design Vue
+
+### API Pattern
+
+```javascript
+let data = {
+  schema: get_schema(),
+  table: "table_name",
+  conditions: JSON.stringify({ field: value }),
+  order_by: ["field desc"]
+};
+this.rows = await request("/select", data, "get");
+```
+
+### Condition Operators
+
+| Operator | SQL | Example |
+|----------|-----|---------|
+| (none) | = | `{ status: "active" }` |
+| (>) | > | `{ "(>)price": 100 }` |
+| (<) | < | `{ "(<)qty": 50 }` |
+| (>=) | >= | `{ "(>=)date": "2024-01-01" }` |
+| (<=) | <= | `{ "(<=)date": "2024-12-31" }` |
+| (like) | LIKE | `{ "(like)name": "%john%" }` |
+| (in) | IN | `{ "(in)id": [1,2,3] }` |
+
+---
+
+## PostgreSQL
+
+### Naming
+
+- Tables: `snake_case`, plural (`users`, `order_items`)
+- Columns: `snake_case` (`created_at`, `user_id`)
+- Indexes: `idx_table_column`
+- Views: `v_` prefix (`v_billing`, `v_user_orders`)
+
+### Common Patterns
+
+```sql
+-- Date range
+WHERE date >= '2024-01-01' AND date <= '2024-12-31'
+
+-- Pagination
+LIMIT 20 OFFSET 0
+
+-- Soft delete
+WHERE deleted_at IS NULL
+```
+
+---
+
+## Reusability
+
+**Before creating new files:**
+
+1. Check `components/` for existing components
+2. Check `composables/` for existing utilities
+3. Ask permission if new file needed
+
+**Pre-designed components to use:**
+- `Control/` - Form inputs (Input, Button, Datetime, Dropdownlist)
+- `Grid/` - Tables (AG, AntTable, HtmlTable)
+- `Panel/` - Form containers
+- `Partial/` - Header, Footer, Sidebar
+
+---
+
+## Package Manager
+
+Use **yarn**: `yarn` / `yarn add` / `yarn dev` / `yarn build`
+
+## Documentation
+
+- docs/MEMORY.md - Project memory
+- docs/PROJECT.md - Project context
+
+## After Work
+
+Update docs/MEMORY.md: decisions, tasks, learnings

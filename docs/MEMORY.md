@@ -18,7 +18,12 @@ This file tracks decisions, completed tasks, and learnings for the Claude Code M
 - Template được inject vào context, không sửa file của user
 - Mỗi session tự động có team instructions
 
-**Status**: In Progress
+**Files Created:**
+- `hooks/hooks.json` - SessionStart hook definition
+- `scripts/inject-claude-md.sh` - Script inject template (chmod +x)
+- Updated `plugin.json` - Added hooks reference, bumped version to 1.1.0
+
+**Status**: Completed
 
 ---
 
