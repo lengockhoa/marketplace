@@ -1,5 +1,5 @@
 {
-  "description": "Auto-inject CLAUDE.md template into session context for team standardization",
+  "description": "Auto-inject CLAUDE.md and install agents on session start",
   "hooks": {
     "SessionStart": [
       {
@@ -8,6 +8,10 @@
           {
             "type": "command",
             "command": "${CLAUDE_PLUGIN_ROOT}/scripts/inject-claude-md.sh"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-agents.sh"
           }
         ]
       }
