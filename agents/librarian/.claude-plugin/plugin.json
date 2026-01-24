@@ -1,9 +1,0 @@
-{
-  "name": "librarian",
-  "version": "1.0.0",
-  "description": "Librarian Agent - GitHub code search & documentation research",
-  "author": {
-    "name": "LeNK"
-  },
-  "license": "MIT"
-}

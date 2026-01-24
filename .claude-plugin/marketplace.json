@@ -31,11 +31,6 @@
       "description": "Debugger Agent - Root cause analysis & bug fixing"
     },
     {
-      "name": "librarian",
-      "source": "./agents/librarian",
-      "description": "Librarian Agent - GitHub code search & documentation research"
-    },
-    {
       "name": "researcher",
       "source": "./agents/researcher",
       "description": "Researcher Agent - Codebase exploration & technology research"

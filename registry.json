@@ -42,13 +42,6 @@
           "path": "agents/debugger/AGENT.md"
         },
         {
-          "id": "librarian",
-          "name": "Librarian",
-          "description": "GitHub Code Search & Documentation Research",
-          "category": "Agents",
-          "path": "agents/librarian/AGENT.md"
-        },
-        {
           "id": "researcher",
           "name": "Researcher",
           "description": "Codebase Exploration & Technology Research",
