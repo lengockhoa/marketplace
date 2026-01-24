@@ -39,6 +39,16 @@
       "name": "researcher",
       "source": "./agents/researcher",
       "description": "Researcher Agent - Codebase exploration & technology research"
+    },
+    {
+      "name": "coder",
+      "source": "./agents/coder",
+      "description": "Coder Agent - Implementation specialist for production-quality code"
+    },
+    {
+      "name": "orchestrator",
+      "source": "./agents/orchestrator",
+      "description": "Orchestrator Agent - Workflow coordination for complex multi-phase tasks"
     }
   ]
 }
