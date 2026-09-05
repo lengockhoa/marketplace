@@ -1,0 +1,20 @@
+node_modules/
+.env
+*.log
+.DS_Store
+
+# UKit generated (do not edit)
+.cache/
+.antigravity/
+.claude/
+.codex/
+.omp/
+.ukit/
+opencode.json
+AGENTS.md
+CLAUDE.md
+.claude/ukit/.ukit/
+.claude/ukit/permission-usage.json
+.claude/ukit/permission-audit.log
+.codex/settings.local.json
+# /UKit
