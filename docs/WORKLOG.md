@@ -44,6 +44,31 @@ Track session-level execution details.
 
 **P0 fully closed.** Remaining: P1 (manifest consistency), P2 (agent upgrades — now skill upgrades), P3 (skill content gaps), P4 (docs/distribution), P5 (dev workflow + automation), P6 (architectural — defer).
 
+### 2026-09-05 — P1–P5 + P6 done, v1.4.0 released
+
+- **v1.3.0** (commit `86d5725`, GitHub Release): P1 manifest + P4 docs + P5 dev workflow
+  - package.json: scripts (validate, lint:skills, cross-check, sync-version)
+  - CHANGELOG, CONTRIBUTING
+  - 5 slash commands get YAML frontmatter
+  - .github/workflows/{ci,release}.yml, pre-commit, editorconfig
+  - install-plugin-system.sh rewrite: --uninstall/--dry-run/--tag
+- **v1.3.1** (commit `4d55eef`, GitHub Release): P2 + P3
+  - 6 skills fleshed out with ALWAYS/NEVER + examples + output format
+  - templates/SKILL.template.md
+  - unic-sql RETURNS TABLE contradiction resolved
+- **v1.4.0** (commit `da28942`, GitHub Release): P6 architectural
+  - NEW skill `skills/unic-api/` — full HTTP API contract (endpoints, conditions grammar, GZIP envelope, schema, auth)
+  - DuraOne split: composables/{state,masterApi,userObj}.js → examples/duraone-portal/composables/*.duraone.js
+  - unic-vue is now project-agnostic (generic stubs use runtimeConfig)
+  - examples/duraone-portal/README.md explains the split
+- **All 4 npm validators pass**: validate, lint:skills, cross-check, check-version-sync.
+- **5 GitHub Releases live**: v1.2.0, v1.2.1, v1.3.0, v1.3.1, v1.4.0.
+
+**Future work (deferred):**
+- v1.5.0: real crypto rewrite of `useSession` (httpOnly cookie + Web Crypto HMAC).
+- v1.5.0: unify `unic-vue` + `examples/duraone-portal` into single package.
+- v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into main + reference/*.md.
+
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
 Keep this file compact to save AI context tokens:

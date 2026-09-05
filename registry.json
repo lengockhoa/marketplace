@@ -3,7 +3,7 @@
     {
       "id": "lenk-marketplace",
       "name": "unic",
-      "description": "LeNK's unified Claude Code plugin: 8 skills + 5 slash commands. Installed as one umbrella 'unic' plugin via the lenk-marketplace registry.",
+      "description": "LeNK's unified Claude Code plugin: 9 skills + 5 slash commands. Installed as one umbrella 'unic' plugin via the lenk-marketplace registry.",
       "version": "1.4.0",
       "umbrella": true,
       "plugins": [
