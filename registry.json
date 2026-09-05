@@ -4,7 +4,7 @@
       "id": "lenk-marketplace",
       "name": "unic",
       "description": "LeNK's unified plugin bundle: 9 skills + 5 slash commands. Installed as one umbrella 'unic' plugin via the lenk-marketplace registry.",
-      "version": "1.4.2",
+      "version": "1.4.3",
       "umbrella": true,
       "plugins": [
         {
@@ -14,7 +14,7 @@
           "description": "Nuxt 3 + Vue 2 Options API patterns, backend integration, predefined Control/Grid/Panel components.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-vue/SKILL.md"
+          "path": "plugins/unic/skills/unic-vue/SKILL.md"
         },
         {
           "id": "unic-sql",
@@ -23,7 +23,7 @@
           "description": "PostgreSQL SQL writing conventions for UNIC projects (functions, views, tables, queries).",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-sql/SKILL.md"
+          "path": "plugins/unic/skills/unic-sql/SKILL.md"
         },
         {
           "id": "unic-api",
@@ -32,7 +32,7 @@
           "description": "LeNK/UNIC backend HTTP API contract — endpoints, conditions grammar, GZIP envelope, schema namespacing, auth flow.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-api/SKILL.md"
+          "path": "plugins/unic/skills/unic-api/SKILL.md"
         },
         {
           "id": "unic-architect",
@@ -41,7 +41,7 @@
           "description": "System architect for designing clean, scalable, maintainable systems.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-architect/SKILL.md"
+          "path": "plugins/unic/skills/unic-architect/SKILL.md"
         },
         {
           "id": "unic-coder",
@@ -50,7 +50,7 @@
           "description": "Implementation specialist for production-quality code.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-coder/SKILL.md"
+          "path": "plugins/unic/skills/unic-coder/SKILL.md"
         },
         {
           "id": "unic-debugger",
@@ -59,7 +59,7 @@
           "description": "Root cause analysis and bug fixing.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-debugger/SKILL.md"
+          "path": "plugins/unic/skills/unic-debugger/SKILL.md"
         },
         {
           "id": "unic-orchestrator",
@@ -68,7 +68,7 @@
           "description": "Workflow coordination for complex multi-phase tasks.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-orchestrator/SKILL.md"
+          "path": "plugins/unic/skills/unic-orchestrator/SKILL.md"
         },
         {
           "id": "unic-researcher",
@@ -77,7 +77,7 @@
           "description": "Codebase exploration and external technology research.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-researcher/SKILL.md"
+          "path": "plugins/unic/skills/unic-researcher/SKILL.md"
         },
         {
           "id": "unic-security-auditor",
@@ -86,7 +86,7 @@
           "description": "Security expert for OWASP Top 10, auth/authz flows, secrets handling, and hardening.",
           "category": "Skills",
           "version": "1.0.0",
-          "path": "skills/unic-security-auditor/SKILL.md"
+          "path": "plugins/unic/skills/unic-security-auditor/SKILL.md"
         },
         {
           "id": "document",
@@ -95,7 +95,7 @@
           "description": "Generate or update documentation for the specified code",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "commands/document.md"
+          "path": "plugins/unic/commands/document.md"
         },
         {
           "id": "explain",
@@ -104,7 +104,7 @@
           "description": "Provide a high-level explanation of the current file or specific code blocks",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "commands/explain.md"
+          "path": "plugins/unic/commands/explain.md"
         },
         {
           "id": "refactor",
@@ -113,7 +113,7 @@
           "description": "Suggest and implement refactorings for the specified code",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "commands/refactor.md"
+          "path": "plugins/unic/commands/refactor.md"
         },
         {
           "id": "review",
@@ -122,7 +122,7 @@
           "description": "Perform a comprehensive code review of the current changes or specific files",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "commands/review.md"
+          "path": "plugins/unic/commands/review.md"
         },
         {
           "id": "test",
@@ -131,7 +131,7 @@
           "description": "Generate tests for the current code or specific functions",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "commands/test.md"
+          "path": "plugins/unic/commands/test.md"
         }
       ]
     }

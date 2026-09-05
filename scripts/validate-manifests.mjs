@@ -14,7 +14,7 @@ const pass = (msg) => console.log(`✓ ${msg}`);
 
 const jsonFiles = [
   ".claude-plugin/marketplace.json",
-  ".claude-plugin/plugin.json",
+  "plugins/unic/.claude-plugin/plugin.json",
   "registry.json",
   "package.json",
 ];
@@ -28,7 +28,7 @@ for (const f of jsonFiles) {
 }
 
 // Check skill folders
-const skillsDir = join(ROOT, "skills");
+const skillsDir = join(ROOT, "plugins/unic/skills");
 const skillFolders = readdirSync(skillsDir).filter((d) =>
   statSync(join(skillsDir, d)).isDirectory()
 );
@@ -37,27 +37,27 @@ for (const f of skillFolders) {
   const pluginJson = join(skillsDir, f, ".claude-plugin/plugin.json");
   try {
     readFileSync(skillMd);
-    pass(`skills/${f}/SKILL.md present`);
+    pass(`plugins/unic/skills/${f}/SKILL.md present`);
   } catch {
-    fail(`skills/${f}/SKILL.md missing`);
+    fail(`plugins/unic/skills/${f}/SKILL.md missing`);
   }
   try {
     JSON.parse(readFileSync(pluginJson, "utf8"));
-    pass(`skills/${f}/.claude-plugin/plugin.json parses`);
+    pass(`plugins/unic/skills/${f}/.claude-plugin/plugin.json parses`);
   } catch {
-    fail(`skills/${f}/.claude-plugin/plugin.json missing or invalid`);
+    fail(`plugins/unic/skills/${f}/.claude-plugin/plugin.json missing or invalid`);
   }
 }
 
 // Check slash commands have YAML frontmatter
-const cmdDir = join(ROOT, "commands");
+const cmdDir = join(ROOT, "plugins/unic/commands");
 const cmdFiles = readdirSync(cmdDir).filter((f) => f.endsWith(".md"));
 for (const f of cmdFiles) {
   const content = readFileSync(join(cmdDir, f), "utf8");
   if (!content.startsWith("---")) {
-    fail(`commands/${f} missing YAML frontmatter`);
+    fail(`plugins/unic/commands/${f} missing YAML frontmatter`);
   } else {
-    pass(`commands/${f} has frontmatter`);
+    pass(`plugins/unic/commands/${f} has frontmatter`);
   }
 }
 

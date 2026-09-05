@@ -11,7 +11,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
-const skillsDir = join(ROOT, "skills");
+const skillsDir = join(ROOT, "plugins/unic/skills");
 let failed = false;
 
 for (const folder of readdirSync(skillsDir)) {

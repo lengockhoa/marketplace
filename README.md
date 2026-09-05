@@ -9,9 +9,11 @@ A curated marketplace of skills and slash commands for **Claude Desktop** (and C
 3. Paste: `https://github.com/lengockhoa/marketplace`
 4. Click **Install `unic`**
 
-That's it — Desktop will download the plugin and activate all 9 skills + 5 slash commands.
+That's it — Desktop will clone the repo, find `plugins/unic/`, and activate all 9 skills + 5 slash commands.
 
 > **Why a single `unic` plugin?** LeNK ships everything under one umbrella so a single Add installs the full LeNK stack — no per-skill installs, no marketplace browsing, no half-installed bundles.
+
+> **Plugin layout** matches Anthropic's official pattern: each plugin lives in its own subdirectory (`plugins/unic/`), so the marketplace entry just points at it with `"source": "./plugins/unic"`. Skills auto-discover from `plugins/unic/skills/`, commands from `plugins/unic/commands/`.
 
 ---
 

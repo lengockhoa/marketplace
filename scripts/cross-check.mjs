@@ -10,7 +10,7 @@
  *   skills:   string[]   // paths to skill dirs (e.g. "./skills/unic-vue")
  *   commands: string[]   // paths to .md files (e.g. "./commands/review.md")
  */
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
 import { join, basename, dirname, extname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -22,17 +22,20 @@ let failed = false;
 const fail = (m) => { console.error(`✗ ${m}`); failed = true; };
 const ok = (m) => console.log(`✓ ${m}`);
 
-// 1. marketplace skill / command paths
+// 1. marketplace plugin source paths
 for (const plugin of marketplace.plugins) {
-  for (const s of plugin.skills || []) {
-    const abs = join(ROOT, s);
-    if (!existsSync(abs)) fail(`marketplace.json skill path missing: ${plugin.name} → ${s}`);
-    else ok(`marketplace.json skill path exists: ${plugin.name} → ${s}`);
-  }
-  for (const c of plugin.commands || []) {
-    const abs = join(ROOT, c);
-    if (!existsSync(abs)) fail(`marketplace.json command path missing: ${plugin.name} → ${c}`);
-    else ok(`marketplace.json command path exists: ${plugin.name} → ${c}`);
+  const srcAbs = join(ROOT, plugin.source);
+  if (!existsSync(srcAbs)) {
+    fail(`marketplace.json plugin source missing: ${plugin.name} → ${plugin.source}`);
+  } else {
+    ok(`marketplace.json plugin source exists: ${plugin.name} → ${plugin.source}`);
+    // verify plugin.json exists at source root
+    const pluginJsonAbs = join(srcAbs, ".claude-plugin/plugin.json");
+    if (!existsSync(pluginJsonAbs)) {
+      fail(`marketplace.json plugin.json missing: ${plugin.name} → ${plugin.source}/.claude-plugin/plugin.json`);
+    } else {
+      ok(`marketplace.json plugin.json present: ${plugin.name}`);
+    }
   }
 }
 
@@ -45,43 +48,48 @@ for (const pkg of registry.packages) {
   }
 }
 
-// 3. skills parity
-const mktSkills = new Set();
-for (const plugin of marketplace.plugins) {
-  for (const s of plugin.skills || []) {
-    mktSkills.add(basename(s)); // "./skills/unic-vue" → "unic-vue"
-  }
-}
+// 3. skills parity (derive from filesystem at plugins/unic/skills/)
+const fsSkills = (() => {
+  try {
+    const dir = join(ROOT, "plugins/unic/skills");
+    return new Set(readdirSync(dir).filter((d) =>
+      statSync(join(dir, d)).isDirectory()
+    ));
+  } catch { return new Set(); }
+})();
 const regSkills = new Set();
 for (const pkg of registry.packages) {
   for (const p of pkg.plugins.filter((x) => x.category === "Skills")) regSkills.add(p.id);
 }
-const onlyInMktS = [...mktSkills].filter((s) => !regSkills.has(s));
-const onlyInRegS = [...regSkills].filter((s) => !mktSkills.has(s));
-if (onlyInMktS.length) fail(`skills in marketplace.json but not registry.json: ${onlyInMktS.join(", ")}`);
-if (onlyInRegS.length) fail(`skills in registry.json but not marketplace.json: ${onlyInRegS.join(", ")}`);
-if (!onlyInMktS.length && !onlyInRegS.length) {
-  ok("marketplace.json ↔ registry.json skills in sync");
+const onlyInFsS = [...fsSkills].filter((s) => !regSkills.has(s));
+const onlyInRegS = [...regSkills].filter((s) => !fsSkills.has(s));
+if (onlyInFsS.length) fail(`skills on disk but not in registry.json: ${onlyInFsS.join(", ")}`);
+if (onlyInRegS.length) fail(`skills in registry.json but not on disk: ${onlyInRegS.join(", ")}`);
+if (!onlyInFsS.length && !onlyInRegS.length) {
+  ok(`plugins/unic/skills ↔ registry.json in sync (${fsSkills.size} skills)`);
 }
 
-// 4. commands parity
-const mktCmds = new Set();
-for (const plugin of marketplace.plugins) {
-  for (const c of plugin.commands || []) {
-    // "./commands/review.md" → "review"
-    mktCmds.add(basename(c, extname(c)));
-  }
-}
+// 4. commands parity (derive from filesystem at plugins/unic/commands/)
+const fsCmds = (() => {
+  try {
+    const dir = join(ROOT, "plugins/unic/commands");
+    return new Set(
+      readdirSync(dir)
+        .filter((f) => f.endsWith(".md"))
+        .map((f) => basename(f, ".md"))
+    );
+  } catch { return new Set(); }
+})();
 const regCmds = new Set();
 for (const pkg of registry.packages) {
   for (const p of pkg.plugins.filter((x) => x.category === "Slash Commands")) regCmds.add(p.id);
 }
-const onlyInMktC = [...mktCmds].filter((s) => !regCmds.has(s));
-const onlyInRegC = [...regCmds].filter((s) => !mktCmds.has(s));
-if (onlyInMktC.length) fail(`commands in marketplace.json but not registry.json: ${onlyInMktC.join(", ")}`);
-if (onlyInRegC.length) fail(`commands in registry.json but not marketplace.json: ${onlyInRegC.join(", ")}`);
-if (!onlyInMktC.length && !onlyInRegC.length) {
-  ok("marketplace.json ↔ registry.json commands in sync");
+const onlyInFsC = [...fsCmds].filter((s) => !regCmds.has(s));
+const onlyInRegC = [...regCmds].filter((s) => !fsCmds.has(s));
+if (onlyInFsC.length) fail(`commands on disk but not in registry.json: ${onlyInFsC.join(", ")}`);
+if (onlyInRegC.length) fail(`commands in registry.json but not on disk: ${onlyInRegC.join(", ")}`);
+if (!onlyInFsC.length && !onlyInRegC.length) {
+  ok(`plugins/unic/commands ↔ registry.json in sync (${fsCmds.size} commands)`);
 }
 
 if (failed) { console.error("\n✗ Cross-check failed."); process.exit(1); }

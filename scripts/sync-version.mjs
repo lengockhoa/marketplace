@@ -15,7 +15,7 @@ if (!/^\d+\.\d+\.\d+$/.test(newVersion || "")) {
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const targets = [
-  ".claude-plugin/plugin.json",
+  "plugins/unic/.claude-plugin/plugin.json",
   ".claude-plugin/marketplace.json",
   "registry.json",
   "package.json",

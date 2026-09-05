@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "lenk-marketplace",
   "description": "LeNK's curated collection of skills and slash commands for Claude — bundled as one 'unic' plugin.",
   "owner": {
@@ -7,18 +8,16 @@
   "plugins": [
     {
       "name": "unic",
-      "source": "./",
-      "version": "1.4.2",
-      "description": "unic — LeNK's unified plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
+      "source": "./plugins/unic",
+      "version": "1.4.3",
+      "description": "unic — LeNK's unified plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands (document, explain, refactor, review, test).",
       "author": {
         "name": "LeNK"
       },
       "homepage": "https://github.com/lengockhoa/marketplace",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/lengockhoa/marketplace.git"
-      },
+      "repository": "https://github.com/lengockhoa/marketplace",
       "license": "MIT",
+      "category": "productivity",
       "keywords": [
         "unic",
         "vue",
@@ -29,24 +28,6 @@
         "skill",
         "slash-command",
         "lenk"
-      ],
-      "skills": [
-        "./skills/unic-vue",
-        "./skills/unic-sql",
-        "./skills/unic-api",
-        "./skills/unic-architect",
-        "./skills/unic-coder",
-        "./skills/unic-debugger",
-        "./skills/unic-orchestrator",
-        "./skills/unic-researcher",
-        "./skills/unic-security-auditor"
-      ],
-      "commands": [
-        "./commands/document.md",
-        "./commands/explain.md",
-        "./commands/refactor.md",
-        "./commands/review.md",
-        "./commands/test.md"
       ]
     }
   ]

@@ -117,27 +117,27 @@ safe_symlink() {
 # discover & install
 # ---------------------------------------------------------------------------
 log "📦 Skills:"
-if [[ -d "$MARKETPLACE_DIR/skills" ]]; then
-  for skill_dir in "$MARKETPLACE_DIR/skills/"*/; do
+if [[ -d "$MARKETPLACE_DIR/plugins/unic/skills" ]]; then
+  for skill_dir in "$MARKETPLACE_DIR/plugins/unic/skills/"*/; do
     [[ -d "$skill_dir" ]] || continue
     name="$(basename "$skill_dir")"
     safe_symlink "$skill_dir" "$SKILLS_DIR/$name"
     ok "$name"
   done
 else
-  warn "no skills/ directory in marketplace"
+  warn "no plugins/unic/skills/ directory in marketplace"
 fi
 
 log "📦 Commands:"
-if [[ -d "$MARKETPLACE_DIR/commands" ]]; then
-  for cmd_file in "$MARKETPLACE_DIR/commands/"*.md; do
+if [[ -d "$MARKETPLACE_DIR/plugins/unic/commands" ]]; then
+  for cmd_file in "$MARKETPLACE_DIR/plugins/unic/commands/"*.md; do
     [[ -f "$cmd_file" ]] || continue
     name="$(basename "$cmd_file")"
     safe_symlink "$cmd_file" "$COMMANDS_DIR/$name"
     ok "$name"
   done
 else
-  warn "no commands/ directory in marketplace"
+  warn "no plugins/unic/commands/ directory in marketplace"
 fi
 
 # agents/ folder removed in v1.2.0 — installed via skills instead

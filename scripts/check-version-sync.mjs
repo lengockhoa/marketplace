@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const sources = [
-  [".claude-plugin/plugin.json", (j) => j.version],
+  ["plugins/unic/.claude-plugin/plugin.json", (j) => j.version],
   [".claude-plugin/marketplace.json", (j) => j.plugins?.[0]?.version],
   ["registry.json", (j) => j.packages?.[0]?.version],
   ["package.json", (j) => j.version],

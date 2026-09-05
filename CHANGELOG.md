@@ -11,6 +11,18 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/).
 - v1.5.0: unify `unic-vue` + `examples/duraone-portal` into a single repo-level package.
 - v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into `skills/unic-vue/SKILL.md` + `skills/unic-vue/reference/*.md`.
 
+## [1.4.3] — 2026-09-05
+
+### Fixed (real Claude Desktop install fix — matches Anthropic's official plugin layout)
+- **Restructured plugin to `plugins/unic/` subdirectory**, matching the [official Anthropic marketplace pattern](https://github.com/anthropics/claude-code/tree/main/plugins) where each plugin lives in its own subdirectory and the marketplace entry points to it via `"source": "./plugins/<name>"`. The previous flat layout (`source: "./"`, everything at repo root) is **not** a supported plugin shape — Desktop could discover the marketplace but could not install the plugin, hence the persistent `Plugin couldn't be installed. Try again. (×3)` toast across v1.4.0 / v1.4.1 / v1.4.2.
+- **Moved**: `skills/` → `plugins/unic/skills/`, `commands/` → `plugins/unic/commands/`, `hooks/hooks.json` → `plugins/unic/hooks/hooks.json`, `.claude-plugin/plugin.json` → `plugins/unic/.claude-plugin/plugin.json`. (Examples, templates, mcp-servers, scripts, install-plugin-system.sh stay at repo root — they're reference tooling, not plugin content.)
+- **marketplace.json**: `"source": "./plugins/unic"`, dropped the invalid `skills[]` / `commands[]` arrays entirely (auto-discovery scans the plugin root for `skills/` and `commands/` directories). Added `$schema` reference and `category: "productivity"`.
+- **plugin.json**: simplified to auto-discovery only (no `skills` / `commands` / `hooks` overrides).
+
+### Changed
+- **All 5 validator scripts updated** (`validate-manifests.mjs`, `lint-skills.mjs`, `cross-check.mjs`, `sync-version.mjs`, `check-version-sync.mjs`) to look at the new `plugins/unic/` paths.
+- **install-plugin-system.sh** (Claude Code CLI fallback) updated to symlink from `plugins/unic/skills/` and `plugins/unic/commands/`.
+
 ## [1.4.2] — 2026-09-05
 
 ### Fixed (real Claude Desktop install blocker)
