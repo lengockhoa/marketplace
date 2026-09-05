@@ -1,9 +1,28 @@
 {
   "name": "unic-vue",
   "version": "1.0.0",
-  "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns",
+  "description": "Vue.js & Nuxt.js Expert - Nuxt 3 + Vue 2 Options API patterns, backend integration, predefined Control/Grid/Panel components",
   "author": {
     "name": "LeNK"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "nuxt",
+    "vuejs",
+    "nuxtjs",
+    "vue-component",
+    "vue-form",
+    "control-input",
+    "control-button",
+    "ag-grid",
+    "ant-design",
+    "unic",
+    "frontend"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
 }

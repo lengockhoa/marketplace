@@ -1,0 +1,28 @@
+{
+  "name": "unic-sql",
+  "version": "1.0.0",
+  "description": "PostgreSQL SQL writing conventions for UNIC projects (functions, views, tables, queries).",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "sql",
+    "postgresql",
+    "postgres",
+    "function",
+    "view",
+    "table",
+    "query",
+    "fn_",
+    "v_",
+    "unic",
+    "database",
+    "psql"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-sql",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}
