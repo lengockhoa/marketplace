@@ -36,7 +36,7 @@ adding or changing skills, agents, and slash commands.
 │       ├── SKILL.md          # skill definition (frontmatter + workflow)
 │       └── .claude-plugin/
 │           └── plugin.json   # per-skill manifest (parity with marketplace)
-├── slash-commands/
+├── commands/
 │   └── <name>.md             # slash command (YAML frontmatter required)
 ├── scripts/                  # node + bash helpers
 ├── install-plugin-system.sh  # one-shot installer (supports --uninstall/--dry-run/--tag)
@@ -89,7 +89,7 @@ adding or changing skills, agents, and slash commands.
 
 ## Adding a new slash command
 
-1. Write `slash-commands/<name>.md` with YAML frontmatter:
+1. Write `commands/<name>.md` with YAML frontmatter:
    ```yaml
    ---
    description: <one-liner>

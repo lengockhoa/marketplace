@@ -4,7 +4,7 @@
       "id": "lenk-marketplace",
       "name": "unic",
       "description": "LeNK's unified Claude Code plugin: 9 skills + 5 slash commands. Installed as one umbrella 'unic' plugin via the lenk-marketplace registry.",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "umbrella": true,
       "plugins": [
         {
@@ -95,7 +95,7 @@
           "description": "Generate or update documentation for the specified code",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "slash-commands/document.md"
+          "path": "commands/document.md"
         },
         {
           "id": "explain",
@@ -104,7 +104,7 @@
           "description": "Provide a high-level explanation of the current file or specific code blocks",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "slash-commands/explain.md"
+          "path": "commands/explain.md"
         },
         {
           "id": "refactor",
@@ -113,7 +113,7 @@
           "description": "Suggest and implement refactorings for the specified code",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "slash-commands/refactor.md"
+          "path": "commands/refactor.md"
         },
         {
           "id": "review",
@@ -122,7 +122,7 @@
           "description": "Perform a comprehensive code review of the current changes or specific files",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "slash-commands/review.md"
+          "path": "commands/review.md"
         },
         {
           "id": "test",
@@ -131,7 +131,7 @@
           "description": "Generate tests for the current code or specific functions",
           "category": "Slash Commands",
           "version": "1.0.0",
-          "path": "slash-commands/test.md"
+          "path": "commands/test.md"
         }
       ]
     }

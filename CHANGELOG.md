@@ -11,6 +11,18 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/).
 - v1.5.0: unify `unic-vue` + `examples/duraone-portal` into a single repo-level package.
 - v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into `skills/unic-vue/SKILL.md` + `skills/unic-vue/reference/*.md`.
 
+## [1.4.1] — 2026-09-05
+
+### Fixed (Claude Desktop install blocker)
+- **`hooks/hooks.json`**: removed `SessionStart` hooks that referenced `scripts/inject-claude-md.sh` and `scripts/install-agents.sh` (these scripts no longer exist after the v1.2.0 agents→skills restructure). Empty `hooks` block keeps the file present without triggering Desktop's install-error path. Plugin.json no longer points to a hooks file at all.
+- **Directory rename `slash-commands/` → `commands/`**: matches Claude Desktop / Claude Code plugin convention (the `commands/` folder at the plugin root is auto-discovered). Updated `.claude-plugin/marketplace.json`, `registry.json`, `scripts/validate-manifests.mjs`, `install-plugin-system.sh`, `README.md`, `CONTRIBUTING.md`.
+- **Stale `commands/plugin.md` removed**: the orphan `/plugin` slash command conflicted with the built-in Claude Code `/plugin` command and confused Desktop discovery.
+
+### Changed
+- **README rewritten**: install section is now Claude Desktop-first (Add → GitHub URL → Install). Claude Code CLI install moved to a secondary "Option B" section. Added troubleshooting block for the `Plugin couldn't be installed. Try again.` error.
+
+## [1.4.0] — 2026-09-05
+
 ## [1.4.0] — 2026-09-05
 
 ### Added

@@ -1,6 +1,6 @@
 {
   "name": "unic",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "unic — LeNK's unified Claude Code plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands (document, explain, refactor, review, test). Installs as a single umbrella plugin.",
   "author": {
     "name": "LeNK"
@@ -18,6 +18,5 @@
     "skill",
     "slash-command",
     "lenk"
-  ],
-  "hooks": "./hooks/hooks.json"
+  ]
 }

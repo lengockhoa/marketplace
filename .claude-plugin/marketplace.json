@@ -8,7 +8,7 @@
     {
       "name": "unic",
       "source": "./",
-      "version": "1.4.0",
+      "version": "1.4.1",
       "description": "unic — LeNK's unified Claude Code plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
       "keywords": [
         "unic",
@@ -70,23 +70,23 @@
         "commands": [
           {
             "name": "document",
-            "path": "slash-commands/document.md"
+            "path": "commands/document.md"
           },
           {
             "name": "explain",
-            "path": "slash-commands/explain.md"
+            "path": "commands/explain.md"
           },
           {
             "name": "refactor",
-            "path": "slash-commands/refactor.md"
+            "path": "commands/refactor.md"
           },
           {
             "name": "review",
-            "path": "slash-commands/review.md"
+            "path": "commands/review.md"
           },
           {
             "name": "test",
-            "path": "slash-commands/test.md"
+            "path": "commands/test.md"
           }
         ]
       }

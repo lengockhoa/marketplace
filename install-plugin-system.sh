@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 #
 # LeNK Marketplace — one-shot installer / updater / uninstaller for the
-# `unic` umbrella Claude Code plugin.
+# `unic` umbrella Claude Code plugin (Claude Code CLI only — Claude Desktop
+# installs via Settings → Plugins → Add → GitHub URL instead).
 #
 # Install:   curl -sL https://raw.githubusercontent.com/lengockhoa/marketplace/main/install-plugin-system.sh | bash
 # Update:    same command (idempotent — detects an existing install and updates).
 # Uninstall: curl -sL ... | bash -s -- --uninstall
 # Dry-run:   curl -sL ... | bash -s -- --dry-run
-# Pin ver:   curl -sL ... | bash -s -- --tag v1.2.1
+# Pin ver:   curl -sL ... | bash -s -- --tag v1.4.1
 #
 # Safety:
 #   - `set -euo pipefail` — fail fast, fail loud.
@@ -128,15 +129,15 @@ else
 fi
 
 log "📦 Commands:"
-if [[ -d "$MARKETPLACE_DIR/slash-commands" ]]; then
-  for cmd_file in "$MARKETPLACE_DIR/slash-commands/"*.md; do
+if [[ -d "$MARKETPLACE_DIR/commands" ]]; then
+  for cmd_file in "$MARKETPLACE_DIR/commands/"*.md; do
     [[ -f "$cmd_file" ]] || continue
     name="$(basename "$cmd_file")"
     safe_symlink "$cmd_file" "$COMMANDS_DIR/$name"
     ok "$name"
   done
 else
-  warn "no slash-commands/ directory in marketplace"
+  warn "no commands/ directory in marketplace"
 fi
 
 # agents/ folder removed in v1.2.0 — installed via skills instead

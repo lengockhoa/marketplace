@@ -2,7 +2,7 @@
 // Validate marketplace manifests:
 //   - All JSON files parse cleanly.
 //   - Every skill under skills/<unic-name>/ has a SKILL.md + .claude-plugin/plugin.json.
-//   - Every slash command under slash-commands/ has YAML frontmatter.
+//   - Every slash command under commands/ has YAML frontmatter.
 //   - registry.json <-> filesystem match (path fields resolve).
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -50,14 +50,14 @@ for (const f of skillFolders) {
 }
 
 // Check slash commands have YAML frontmatter
-const cmdDir = join(ROOT, "slash-commands");
+const cmdDir = join(ROOT, "commands");
 const cmdFiles = readdirSync(cmdDir).filter((f) => f.endsWith(".md"));
 for (const f of cmdFiles) {
   const content = readFileSync(join(cmdDir, f), "utf8");
   if (!content.startsWith("---")) {
-    fail(`slash-commands/${f} missing YAML frontmatter`);
+    fail(`commands/${f} missing YAML frontmatter`);
   } else {
-    pass(`slash-commands/${f} has frontmatter`);
+    pass(`commands/${f} has frontmatter`);
   }
 }
 

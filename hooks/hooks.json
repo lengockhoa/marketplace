@@ -1,20 +1,4 @@
 {
-  "description": "Auto-inject CLAUDE.md and install agents on session start",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/inject-claude-md.sh"
-          },
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/install-agents.sh"
-          }
-        ]
-      }
-    ]
-  }
+  "description": "unic plugin — no SessionStart hooks required (Claude Desktop auto-installs skills, agents, and commands from the .claude-plugin manifest).",
+  "hooks": {}
 }
