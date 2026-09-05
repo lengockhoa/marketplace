@@ -2,85 +2,126 @@
   "packages": [
     {
       "id": "lenk-marketplace",
-      "name": "LeNK Marketplace",
-      "description": "Core marketplace package with agents, skills, and commands.",
-      "version": "1.0.0",
+      "name": "unic",
+      "description": "LeNK's unified Claude Code plugin: 8 skills + 5 slash commands. Installed as one umbrella 'unic' plugin via the lenk-marketplace registry.",
+      "version": "1.1.0",
+      "umbrella": true,
       "plugins": [
         {
           "id": "unic-vue",
-          "name": "Vue.js Expert",
-          "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns",
+          "name": "unic-vue",
+          "displayName": "unic-vue",
+          "description": "Nuxt 3 + Vue 2 Options API patterns, backend integration, predefined Control/Grid/Panel components.",
           "category": "Skills",
+          "version": "1.0.0",
           "path": "skills/unic-vue/SKILL.md"
         },
         {
           "id": "unic-sql",
-          "name": "UNIC SQL",
-          "description": "PostgreSQL SQL writing conventions for UNIC projects.",
+          "name": "unic-sql",
+          "displayName": "unic-sql",
+          "description": "PostgreSQL SQL writing conventions for UNIC projects (functions, views, tables, queries).",
           "category": "Skills",
+          "version": "1.0.0",
           "path": "skills/unic-sql/SKILL.md"
         },
         {
-          "id": "security-auditor",
-          "name": "Security Auditor",
-          "description": "OWASP & Security Hardening",
-          "category": "Agents",
-          "path": "agents/security/AGENT.md"
+          "id": "unic-architect",
+          "name": "unic-architect",
+          "displayName": "unic-architect",
+          "description": "System architect for designing clean, scalable, maintainable systems.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-architect/SKILL.md"
         },
         {
-          "id": "architect",
-          "name": "System Architect",
-          "description": "Architecture Design & Implementation Plans",
-          "category": "Agents",
-          "path": "agents/architect/AGENT.md"
+          "id": "unic-coder",
+          "name": "unic-coder",
+          "displayName": "unic-coder",
+          "description": "Implementation specialist for production-quality code.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-coder/SKILL.md"
         },
         {
-          "id": "debugger",
-          "name": "Debugger",
-          "description": "Root Cause Analysis & Bug Fixing",
-          "category": "Agents",
-          "path": "agents/debugger/AGENT.md"
+          "id": "unic-debugger",
+          "name": "unic-debugger",
+          "displayName": "unic-debugger",
+          "description": "Root cause analysis and bug fixing.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-debugger/SKILL.md"
         },
         {
-          "id": "researcher",
-          "name": "Researcher",
-          "description": "Codebase Exploration & Technology Research",
-          "category": "Agents",
-          "path": "agents/researcher/AGENT.md"
+          "id": "unic-orchestrator",
+          "name": "unic-orchestrator",
+          "displayName": "unic-orchestrator",
+          "description": "Workflow coordination for complex multi-phase tasks.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-orchestrator/SKILL.md"
+        },
+        {
+          "id": "unic-researcher",
+          "name": "unic-researcher",
+          "displayName": "unic-researcher",
+          "description": "Codebase exploration and external technology research.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-researcher/SKILL.md"
+        },
+        {
+          "id": "unic-security-auditor",
+          "name": "unic-security-auditor",
+          "displayName": "unic-security-auditor",
+          "description": "Security expert for OWASP Top 10, auth/authz flows, secrets handling, and hardening.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-security-auditor/SKILL.md"
         },
         {
           "id": "document",
-          "name": "Document",
+          "name": "document",
+          "displayName": "/document",
           "description": "Generate or update documentation for the specified code",
           "category": "Slash Commands",
+          "version": "1.0.0",
           "path": "slash-commands/document.md"
         },
         {
           "id": "explain",
-          "name": "Explain",
+          "name": "explain",
+          "displayName": "/explain",
           "description": "Provide a high-level explanation of the current file or specific code blocks",
           "category": "Slash Commands",
+          "version": "1.0.0",
           "path": "slash-commands/explain.md"
         },
         {
           "id": "refactor",
-          "name": "Refactor",
+          "name": "refactor",
+          "displayName": "/refactor",
           "description": "Suggest and implement refactorings for the specified code",
           "category": "Slash Commands",
+          "version": "1.0.0",
           "path": "slash-commands/refactor.md"
         },
         {
           "id": "review",
-          "name": "Review",
+          "name": "review",
+          "displayName": "/review",
           "description": "Perform a comprehensive code review of the current changes or specific files",
           "category": "Slash Commands",
+          "version": "1.0.0",
           "path": "slash-commands/review.md"
         },
         {
           "id": "test",
-          "name": "Test",
+          "name": "test",
+          "displayName": "/test",
           "description": "Generate tests for the current code or specific functions",
           "category": "Slash Commands",
+          "version": "1.0.0",
           "path": "slash-commands/test.md"
         }
       ]

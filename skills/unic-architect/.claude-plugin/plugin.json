@@ -1,0 +1,24 @@
+{
+  "name": "unic-architect",
+  "version": "1.0.0",
+  "description": "System architect for designing clean, scalable, maintainable systems. Analyzes requirements, identifies trade-offs, defines file structures and component interactions.",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "architect",
+    "architecture",
+    "system-design",
+    "design-plan",
+    "trade-off",
+    "unic",
+    "agent",
+    "skill"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-architect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}

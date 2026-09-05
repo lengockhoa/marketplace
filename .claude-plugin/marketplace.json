@@ -1,49 +1,52 @@
 {
   "name": "lenk-marketplace",
-  "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
+  "description": "LeNK's curated collection of skills and slash commands for Claude Code — bundled as one 'unic' plugin.",
   "owner": {
     "name": "lengockhoa"
   },
   "plugins": [
     {
-      "name": "unic-vue",
-      "source": "./skills/unic-vue",
-      "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns"
-    },
-    {
-      "name": "unic-sql",
-      "source": "./skills/unic-sql",
-      "description": "PostgreSQL SQL writing conventions for UNIC projects."
-    },
-    {
-      "name": "security-auditor",
-      "source": "./agents/security",
-      "description": "Security Auditor Agent - OWASP vulnerabilities & security hardening"
-    },
-    {
-      "name": "architect",
-      "source": "./agents/architect",
-      "description": "System Architect Agent - Architecture design & implementation plans"
-    },
-    {
-      "name": "debugger",
-      "source": "./agents/debugger",
-      "description": "Debugger Agent - Root cause analysis & bug fixing"
-    },
-    {
-      "name": "researcher",
-      "source": "./agents/researcher",
-      "description": "Researcher Agent - Codebase exploration & technology research"
-    },
-    {
-      "name": "coder",
-      "source": "./agents/coder",
-      "description": "Coder Agent - Implementation specialist for production-quality code"
-    },
-    {
-      "name": "orchestrator",
-      "source": "./agents/orchestrator",
-      "description": "Orchestrator Agent - Workflow coordination for complex multi-phase tasks"
+      "name": "unic",
+      "source": "./",
+      "version": "1.1.0",
+      "description": "unic — LeNK's unified Claude Code plugin bundle: 8 skills (unic-vue, unic-sql, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
+      "keywords": [
+        "unic",
+        "vue",
+        "nuxt",
+        "postgresql",
+        "sql",
+        "agent",
+        "skill",
+        "slash-command",
+        "lenk",
+        "marketplace"
+      ],
+      "homepage": "https://github.com/lengockhoa/marketplace",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/lengockhoa/marketplace.git"
+      },
+      "license": "MIT",
+      "components": {
+        "skills": [
+          { "name": "unic-vue", "path": "skills/unic-vue" },
+          { "name": "unic-sql", "path": "skills/unic-sql" },
+          { "name": "unic-architect", "path": "skills/unic-architect" },
+          { "name": "unic-coder", "path": "skills/unic-coder" },
+          { "name": "unic-debugger", "path": "skills/unic-debugger" },
+          { "name": "unic-orchestrator", "path": "skills/unic-orchestrator" },
+          { "name": "unic-researcher", "path": "skills/unic-researcher" },
+          { "name": "unic-security-auditor", "path": "skills/unic-security-auditor" }
+        ],
+        "commands": [
+          { "name": "document", "path": "slash-commands/document.md" },
+          { "name": "explain", "path": "slash-commands/explain.md" },
+          { "name": "refactor", "path": "slash-commands/refactor.md" },
+          { "name": "review", "path": "slash-commands/review.md" },
+          { "name": "test", "path": "slash-commands/test.md" }
+        ]
+      }
     }
   ]
 }

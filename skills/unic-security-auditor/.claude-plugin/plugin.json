@@ -1,0 +1,27 @@
+{
+  "name": "unic-security-auditor",
+  "version": "1.0.0",
+  "description": "Security expert for OWASP Top 10 vulnerabilities, auth/authz flows, secrets handling, and hardening configurations.",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "security-audit",
+    "owasp",
+    "vulnerability",
+    "auth",
+    "authorization",
+    "secrets",
+    "hardening",
+    "unic",
+    "agent",
+    "skill"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-security-auditor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}

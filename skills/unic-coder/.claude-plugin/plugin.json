@@ -1,0 +1,25 @@
+{
+  "name": "unic-coder",
+  "version": "1.0.0",
+  "description": "Implementation specialist for production-quality code. Implements features, writes components/modules, API endpoints, database queries, and accompanying tests after a design is approved.",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "coder",
+    "implementation",
+    "implement",
+    "build-feature",
+    "production-code",
+    "api-endpoint",
+    "unic",
+    "agent",
+    "skill"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-coder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}

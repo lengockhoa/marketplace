@@ -1,0 +1,25 @@
+{
+  "name": "unic-orchestrator",
+  "version": "1.0.0",
+  "description": "Workflow coordination for complex multi-phase tasks. Decomposes large projects into phases, tracks dependencies, and ensures smooth handoffs between design, implementation, and verification.",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "orchestrator",
+    "coordinate",
+    "workflow",
+    "multi-phase",
+    "large-project",
+    "handoff",
+    "unic",
+    "agent",
+    "skill"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-orchestrator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}
