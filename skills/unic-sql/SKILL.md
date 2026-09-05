@@ -96,7 +96,11 @@ Step 2: If view exists → CREATE FUNCTION with RETURNS SETOF view_name
 
 **NEVER:**
 - Create view inside function
-- Use `RETURNS TABLE` - always create view instead
+- Use `RETURNS TABLE` to return a uniform column list — always create a `v_` view and use `RETURNS SETOF v_xxx` instead
+
+**Exception:** `RETURNS TABLE` is acceptable for `UNION ALL` reports whose
+column lists are heterogeneous and cannot be expressed as a single view
+(see Pattern 3).
 
 ```sql
 -- GOOD: View exists separately, function references it
@@ -192,6 +196,10 @@ SELECT * FROM schema_name.fn_get_name('user@example.com');
 ### Pattern 3: UNION ALL (Complex Reports)
 
 Use for combining multiple result sets.
+
+> **Why `RETURNS TABLE` is OK here:** the column lists in each `UNION ALL`
+> branch are heterogeneous and cannot be expressed as a single view. This
+> is the one place we deviate from the "always use a view" rule.
 
 ```sql
 DROP FUNCTION IF EXISTS schema_name.fn_rpt_complex;
