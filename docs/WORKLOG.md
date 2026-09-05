@@ -35,6 +35,15 @@ Track session-level execution details.
 - Plugin structure: ✅ resolved (option A — single umbrella `unic` plugin).
 - Remaining P0 (#14, #15, #16) + P1–P5 from plan still to do.
 
+### 2026-09-05 — P0 cleanup (commit `157c3f6`, tag `v1.2.1`, pushed)
+
+- `components/View/Form.vue` filled with a minimal starter template (was 0-byte); SKILL.md lines 93/974/1001 clarify it's a starter.
+- `README.md` rewritten: structure section reflects v1.2 umbrella `unic` plugin (8 skills + 5 commands); stale `Librarian` refs + broken `SETUP_LIBRARIAN.md` link removed.
+- `composables/useSession.js`: prepended `SECURITY NOTES` block documenting the broken obfuscation, module-scope SSR risk, hard-coded `RANDOM_STRING` "salt", and the planned v1.3.0 fix (httpOnly cookie + Web Crypto HMAC).
+- Version bumped 1.2.0 → 1.2.1 (patch — copy/doc/cleanup).
+
+**P0 fully closed.** Remaining: P1 (manifest consistency), P2 (agent upgrades — now skill upgrades), P3 (skill content gaps), P4 (docs/distribution), P5 (dev workflow + automation), P6 (architectural — defer).
+
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
 Keep this file compact to save AI context tokens:
