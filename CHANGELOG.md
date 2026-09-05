@@ -11,6 +11,16 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/).
 - v1.5.0: unify `unic-vue` + `examples/duraone-portal` into a single repo-level package.
 - v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into `skills/unic-vue/SKILL.md` + `skills/unic-vue/reference/*.md`.
 
+## [1.4.2] — 2026-09-05
+
+### Fixed (real Claude Desktop install blocker)
+- **`.claude-plugin/marketplace.json` schema was wrong.** Plugin entries used a `"components": { "skills": [...], "commands": [...] }` block, which is **not a valid field** in the Claude Code / Desktop marketplace schema. The plugin was discoverable in the Directory (marketplace.json parses) but every install attempt failed with the generic `Plugin couldn't be installed. Try again.` toast — Desktop silently dropped the unknown `components` block and found no skills/commands to install.
+  - **Fix**: replaced `components` block with individual `skills: string[]` and `commands: string[]` arrays at the plugin-entry level (per the [official plugin-marketplaces spec](https://code.claude.com/docs/en/plugin-marketplaces#plugin-entry-schema-in-marketplacejson)). Each path is relative to the plugin root and uses `./` prefix as the spec requires.
+- **Descriptions**: dropped "Claude Code" mention from `plugin.json` + `marketplace.json` + `registry.json` so Desktop doesn't filter the plugin as a Code-only artifact.
+
+### Changed
+- **`scripts/cross-check.mjs`**: rewritten to validate the new flat `skills[]` / `commands[]` schema (was iterating the removed `components` block). Now also checks command parity, not just skill parity.
+
 ## [1.4.1] — 2026-09-05
 
 ### Fixed (Claude Desktop install blocker)

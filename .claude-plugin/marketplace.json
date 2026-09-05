@@ -1,6 +1,6 @@
 {
   "name": "lenk-marketplace",
-  "description": "LeNK's curated collection of skills and slash commands for Claude Code — bundled as one 'unic' plugin.",
+  "description": "LeNK's curated collection of skills and slash commands for Claude — bundled as one 'unic' plugin.",
   "owner": {
     "name": "lengockhoa"
   },
@@ -8,8 +8,17 @@
     {
       "name": "unic",
       "source": "./",
-      "version": "1.4.1",
-      "description": "unic — LeNK's unified Claude Code plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
+      "version": "1.4.2",
+      "description": "unic — LeNK's unified plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
+      "author": {
+        "name": "LeNK"
+      },
+      "homepage": "https://github.com/lengockhoa/marketplace",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/lengockhoa/marketplace.git"
+      },
+      "license": "MIT",
       "keywords": [
         "unic",
         "vue",
@@ -19,77 +28,26 @@
         "agent",
         "skill",
         "slash-command",
-        "lenk",
-        "marketplace"
+        "lenk"
       ],
-      "homepage": "https://github.com/lengockhoa/marketplace",
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/lengockhoa/marketplace.git"
-      },
-      "license": "MIT",
-      "components": {
-        "skills": [
-          {
-            "name": "unic-vue",
-            "path": "skills/unic-vue"
-          },
-          {
-            "name": "unic-sql",
-            "path": "skills/unic-sql"
-          },
-          {
-            "name": "unic-api",
-            "path": "skills/unic-api"
-          },
-          {
-            "name": "unic-architect",
-            "path": "skills/unic-architect"
-          },
-          {
-            "name": "unic-coder",
-            "path": "skills/unic-coder"
-          },
-          {
-            "name": "unic-debugger",
-            "path": "skills/unic-debugger"
-          },
-          {
-            "name": "unic-orchestrator",
-            "path": "skills/unic-orchestrator"
-          },
-          {
-            "name": "unic-researcher",
-            "path": "skills/unic-researcher"
-          },
-          {
-            "name": "unic-security-auditor",
-            "path": "skills/unic-security-auditor"
-          }
-        ],
-        "commands": [
-          {
-            "name": "document",
-            "path": "commands/document.md"
-          },
-          {
-            "name": "explain",
-            "path": "commands/explain.md"
-          },
-          {
-            "name": "refactor",
-            "path": "commands/refactor.md"
-          },
-          {
-            "name": "review",
-            "path": "commands/review.md"
-          },
-          {
-            "name": "test",
-            "path": "commands/test.md"
-          }
-        ]
-      }
+      "skills": [
+        "./skills/unic-vue",
+        "./skills/unic-sql",
+        "./skills/unic-api",
+        "./skills/unic-architect",
+        "./skills/unic-coder",
+        "./skills/unic-debugger",
+        "./skills/unic-orchestrator",
+        "./skills/unic-researcher",
+        "./skills/unic-security-auditor"
+      ],
+      "commands": [
+        "./commands/document.md",
+        "./commands/explain.md",
+        "./commands/refactor.md",
+        "./commands/review.md",
+        "./commands/test.md"
+      ]
     }
   ]
 }

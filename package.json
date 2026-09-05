@@ -1,6 +1,6 @@
 {
   "name": "@lenk/marketplace",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "description": "LeNK's unified 'unic' Claude Code plugin: 8 skills + 5 slash commands. Source of truth for marketplace metadata lives in registry.json; this file is only for tooling that requires a package.json (lint, CI).",
   "author": {
