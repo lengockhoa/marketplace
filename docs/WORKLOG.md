@@ -69,6 +69,22 @@ Track session-level execution details.
 - v1.5.0: unify `unic-vue` + `examples/duraone-portal` into single package.
 - v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into main + reference/*.md.
 
+### 2026-09-05 — v1.4.1 Claude Desktop install fix (commit `2ea769f`, tag `v1.4.1`, pushed)
+
+**Root cause** of `Plugin couldn't be installed. Try again. (×3)` on Claude Desktop:
+- `hooks/hooks.json` referenced `${CLAUDE_PLUGIN_ROOT}/scripts/inject-claude-md.sh` and `scripts/install-agents.sh` — both scripts were deleted in the v1.2.0 agents→skills restructure. Desktop's plugin loader fails to resolve the hook command paths and aborts install.
+- `slash-commands/` directory name does not match Desktop auto-discovery (expects `commands/` at plugin root).
+
+**Fix:**
+- `hooks/hooks.json` → empty `{}`; removed `hooks` line from `plugin.json`.
+- Renamed `slash-commands/` → `commands/` (5 files moved). Updated `.claude-plugin/marketplace.json` paths, `registry.json` paths, `scripts/validate-manifests.mjs`, `install-plugin-system.sh`, `README.md`, `CONTRIBUTING.md`.
+- Deleted stale `commands/plugin.md` (orphan `/plugin` command conflicted with Claude Code's built-in).
+- Rewrote `README.md` install section: Claude Desktop-first (Add → GitHub URL → Install); Claude Code CLI moved to secondary "Option B".
+- 4 npm validators pass.
+- v1.4.1 GitHub Release created with detailed notes.
+
+**User direction:** "chỉ dùng cho Claude Desktop thôi nhé, Claude code là phụ thôi, nếu conflict thì gỡ cả claude code ra". Format is now identical for both targets (Desktop reads the same marketplace.json), so no further conflict expected.
+
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
 Keep this file compact to save AI context tokens:
