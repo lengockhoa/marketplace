@@ -21,12 +21,19 @@ Track session-level execution details.
 - `skills/unic-sql/.claude-plugin/plugin.json`: **was MISSING entirely** — root cause of "Skills: 0" in UI.
 - `skills/unic-vue/.claude-plugin/plugin.json`: added keywords/homepage/repository.
 
-**Pending (user mid-session interruption, context ~92%)**
-- Plugin structure unclear to user: 8 separate plugins (2 skills + 6 agents). User wants ONE "unic plugin" with skills under it. Need clarification on:
-  - (A) bundle all 8 under one umbrella `unic` plugin? or
-  - (B) rename agents with `unic-` prefix? or
-  - (C) keep separate but group them better?
-- Remaining P0 tasks (#14–17) + P1–P5 from plan still to do.
+**Restructure: agents → skills + umbrella 'unic' plugin (commit `54a78d6`, pushed)**
+- User chose option A: bundle everything as one umbrella `unic` plugin.
+- Converted all 6 agents to skills: `agents/{architect,coder,debugger,orchestrator,researcher,security}` → `skills/unic-{name}/SKILL.md` with proper frontmatter (name, description, triggers, category=agent).
+- Added `.claude-plugin/plugin.json` for each new skill (parity with unic-vue/unic-sql).
+- Deleted legacy `agents/` folder (12 files).
+- Restructured `.claude-plugin/marketplace.json`: single `unic` plugin entry with 8 skills + 5 commands under `components`.
+- Renamed root `.claude-plugin/plugin.json` to `name: "unic"` (1.1.0).
+- Updated `registry.json`: 8 `unic-*` skills under `umbrella: true` package.
+- All 11 JSON manifests validate cleanly with `python3 -c "json.load(...)"`.
+
+**Pending**
+- Plugin structure: ✅ resolved (option A — single umbrella `unic` plugin).
+- Remaining P0 (#14, #15, #16) + P1–P5 from plan still to do.
 
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
