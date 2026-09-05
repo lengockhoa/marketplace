@@ -98,6 +98,21 @@ Track session-level execution details.
 - Rewrote `scripts/cross-check.mjs` to validate the new flat schema (now also checks command parity).
 - All 4 npm validators pass at v1.4.2. GitHub Release v1.4.2 live with detailed notes.
 
+### 2026-09-05 — v1.4.3 REAL fix (commit `7bb52ee`, tag `v1.4.3`, pushed)
+
+**Real root cause** (after fetching official Anthropic marketplace.json content):
+> Anthropic's official marketplace uses `source: "./plugins/<plugin-name>"` for every entry. NO plugin lives at the marketplace root with `source: "./"`.
+
+The flat layout I had used (skills/commands/.claude-plugin/plugin.json all at repo root with `source: "./"`) is **not a supported plugin shape**. Directory could discover it but install always failed.
+
+**Fix:** Restructured to `plugins/unic/` subdirectory matching Anthropic's pattern exactly:
+- `git mv skills/ plugins/unic/skills/`
+- `git mv commands/ plugins/unic/commands/`
+- `git mv hooks/ plugins/unic/hooks/`
+- `git mv .claude-plugin/plugin.json plugins/unic/.claude-plugin/plugin.json`
+- `marketplace.json`: `"source": "./plugins/unic"`, no skills/commands arrays (auto-discovery), added `$schema` and `category: "productivity"`
+- All 5 validator scripts updated for new paths. All 4 npm validators pass.
+
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
 Keep this file compact to save AI context tokens:
