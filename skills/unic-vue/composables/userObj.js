@@ -1,71 +1,76 @@
-export const getUserObjByUsername = async (manhanvien) => {
-    let to_return = {};
-    let data = {
-      schema: get_schema(),
-      table: "nhanvien",
-      conditions: JSON.stringify({ username: manhanvien }),
-    };
-    const resp = await request("/select", data, "get");
-    if (resp.length > 0) {
-        to_return = resp[0];
-    }
-    return to_return;
-  };
+/**
+ * Generic user-lookup helpers.
+ *
+ * Project-agnostic template — copy into your project and adapt the
+ * view name and field list. The DuraOne-specific version is preserved
+ * at `examples/duraone-portal/composables/userObj.duraone.js` for
+ * reference.
+ *
+ * Auth flow:
+ *   - Login is handled by `useRequest.requestLogin()` (see unic-api skill).
+ *   - The session is stored in `localStorage` under `unic_service`
+ *     via `composables/useSession.js`.
+ *   - The current user object should be hydrated into `state` once
+ *     on app start (see `plugins/session.client.ts` in your project).
+ */
+import { request } from "./useRequest.js";
+import { get_schema } from "./state.js";
 
-export const getSalesupByUsername = async (manhanvien) => {
-  let masalesup = "";
-  let data = {
+/**
+ * Default view used to look up users. Override this constant in your
+ * project's copy of this file.
+ */
+const USER_VIEW = "v_user";
+
+/**
+ * Look up a user by their `username` (login id).
+ *
+ * @param {string} username
+ * @returns {Promise<object>} the user row, or `{}` if not found
+ */
+export const getUserObjByUsername = async (username) => {
+  if (!username) return {};
+  const data = {
     schema: get_schema(),
-    table: "nhanvien",
-    columns: ["masalesup"],
-    conditions: JSON.stringify({ username: manhanvien }),
+    table: USER_VIEW,
+    conditions: JSON.stringify({ username }),
   };
-  const resp = await request("/select", data, "get");
-  if (resp.length > 0) {
-    masalesup = resp[0].masalesup;
-  }
-  return masalesup;
+  const rows = await request("/select", data, "get");
+  return rows.length > 0 ? rows[0] : {};
 };
 
-export const getFullnameByUsername = async (manhanvien) => {
-    let tennhanvien = "";
-    let data = {
-      schema: get_schema(),
-      table: "nhanvien",
-      columns: ["tennhanvien"],
-      conditions: JSON.stringify({ username: manhanvien }),
-    };
-    const resp = await request("/select", data, "get");
-    if (resp.length > 0) {
-        tennhanvien = resp[0].tennhanvien;
-    }
-    return tennhanvien;
+/**
+ * Look up a user by primary key.
+ *
+ * @param {string|number} id
+ * @returns {Promise<object>}
+ */
+export const getUserObjById = async (id) => {
+  if (id == null) return {};
+  const data = {
+    schema: get_schema(),
+    table: USER_VIEW,
+    conditions: JSON.stringify({ id }),
   };
+  const rows = await request("/select", data, "get");
+  return rows.length > 0 ? rows[0] : {};
+};
 
-  export const sendNotiToUser = async (username, data = {}) => {
-    let noti_send = data;
-    let notiobj = await get_noti_token_list(username);
-    const android_list = notiobj.android;
-    const ios_list = notiobj.ios;
-    noti_send['os'] = 'android3';
-    noti_send['token'] = android_list;
-    requestSendnoti(noti_send);
-    noti_send['os'] = 'ios';
-    noti_send['token'] = ios_list;
-    requestSendnoti(noti_send);
-    let to_save_noti = {
-      username: username,
-      title: data.title,
-      message: data.message,
-      os: data.os,
-      token: data.token,
-    }
-    saveNotiToServer(to_save_noti);
+/**
+ * Fetch a subset of fields for a user. Useful for autocomplete / pickers.
+ *
+ * @param {string} username
+ * @param {string[]} fields — column names to return
+ * @returns {Promise<object>}
+ */
+export const getUserFields = async (username, fields = []) => {
+  if (!username) return {};
+  const data = {
+    schema: get_schema(),
+    table: USER_VIEW,
+    columns: fields,
+    conditions: JSON.stringify({ username }),
   };
-
-  export const saveNotiToServer = async (data = {}) => {
-    data['send_time'] = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    data['schema'] = get_schema();
-    data['table'] = 'notification';
-    await request("/save", data);
-  };
+  const rows = await request("/select", data, "get");
+  return rows.length > 0 ? rows[0] : {};
+};

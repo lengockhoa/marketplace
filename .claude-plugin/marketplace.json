@@ -9,7 +9,7 @@
       "name": "unic",
       "source": "./",
       "version": "1.3.1",
-      "description": "unic — LeNK's unified Claude Code plugin bundle: 8 skills (unic-vue, unic-sql, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
+      "description": "unic — LeNK's unified Claude Code plugin bundle: 9 skills (unic-vue, unic-sql, unic-api, unic-architect, unic-coder, unic-debugger, unic-orchestrator, unic-researcher, unic-security-auditor) + 5 slash commands.",
       "keywords": [
         "unic",
         "vue",
@@ -37,6 +37,10 @@
           {
             "name": "unic-sql",
             "path": "skills/unic-sql"
+          },
+          {
+            "name": "unic-api",
+            "path": "skills/unic-api"
           },
           {
             "name": "unic-architect",

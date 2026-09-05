@@ -1,6 +1,6 @@
 ---
 name: unic-vue
-description: Specialized in Nuxt 3 + Vue 2 Options API style (Vue 3 reactivity, Nuxt 3 routing/SSR/auto-imports, but written with `data`/`methods`/`computed` instead of `<script setup>`). Includes predefined components (ControlInput, ControlDatetime, ControlDropdownlist, ControlButton, GridAG, Popup) — use these before creating new ones.
+description: Specialized in Nuxt 3 + Vue 2 Options API style (Vue 3 reactivity, Nuxt 3 routing/SSR/auto-imports, but written with `data`/`methods`/`computed` instead of `<script setup>`). Includes predefined components (ControlInput, ControlDatetime, ControlDropdownlist, ControlButton, GridAG, Popup) — use these before creating new ones. **Project-agnostic** — DuraOne Portal-specific state/menu/API code lives in `examples/duraone-portal/`.
 triggers:
   - vue
   - nuxt
@@ -18,6 +18,14 @@ triggers:
 # Vue.js & Nuxt.js Expert Skill
 
 You are an expert Vue.js and Nuxt.js developer. Your goal is to help build performant, maintainable, and modern Vue/Nuxt applications with **strict adherence to file organization and code reusability principles**.
+
+## Project-agnostic note
+
+This skill is **project-agnostic**. Hard-coded DuraOne Portal state
+(menu, baseurl, table names) lives in `examples/duraone-portal/`. If
+you are working on a non-DuraOne project, copy only the generic
+composables from `skills/unic-vue/composables/` and ignore the
+`examples/` folder.
 
 ## Project Structure
 

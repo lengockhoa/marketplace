@@ -26,6 +26,15 @@
           "path": "skills/unic-sql/SKILL.md"
         },
         {
+          "id": "unic-api",
+          "name": "unic-api",
+          "displayName": "unic-api",
+          "description": "LeNK/UNIC backend HTTP API contract — endpoints, conditions grammar, GZIP envelope, schema namespacing, auth flow.",
+          "category": "Skills",
+          "version": "1.0.0",
+          "path": "skills/unic-api/SKILL.md"
+        },
+        {
           "id": "unic-architect",
           "name": "unic-architect",
           "displayName": "unic-architect",

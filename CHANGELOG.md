@@ -7,9 +7,19 @@ and the marketplace adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Planned
-- v1.3.0: real crypto rewrite of `useSession` (httpOnly cookie + Web Crypto HMAC).
-- v1.3.0: extract `unic-vue` examples to `examples/duraone-portal/` (separate package).
-- v1.4.0: full API contract skill (`unic-api`) documenting `/select`, `/insert`, `/save`, `/update`, `/hard_delete`, `/sync`, `/upload_more_data`, `/call`.
+- v1.5.0: real crypto rewrite of `useSession` (httpOnly cookie + Web Crypto HMAC).
+- v1.5.0: unify `unic-vue` + `examples/duraone-portal` into a single repo-level package.
+- v1.6.0: split `unic-vue/SKILL.md` (~1700 lines) into `skills/unic-vue/SKILL.md` + `skills/unic-vue/reference/*.md`.
+
+## [1.4.0] — 2026-09-05
+
+### Added
+- **`skills/unic-api/`** (new skill): full backend HTTP API contract — endpoints (`/select`, `/insert`, `/save`, `/update`, `/hard_delete`, `/sync`, `/upload_more_data`, `/call`, `/user/login`, `/send_email`), conditions grammar (`(in)`, `(like)`, `(between)`, `(or)`), GZIP envelope, schema namespacing (`qas` vs `prd`), and auth flow.
+- **`examples/duraone-portal/`** (new example folder): holds the DuraOne Portal-specific `state.duraone.js`, `masterApi.duraone.js`, `userObj.duraone.js` that were previously bundled inside `unic-vue/composables/`.
+
+### Changed
+- **unic-vue is now project-agnostic.** The generic stubs (`state.js`, `masterApi.js`, `userObj.js`) no longer hard-code DuraOne URLs, menu structure, or table names. The `baseurl()` function reads from `runtimeConfig.public.apiBase` instead.
+- Marketplace, registry, and root plugin.json now list **9 skills** (was 8) — `unic-api` added.
 
 ## [1.2.1] — 2026-09-05
 

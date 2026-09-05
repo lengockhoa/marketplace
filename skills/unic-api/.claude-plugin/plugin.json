@@ -1,0 +1,35 @@
+{
+  "name": "unic-api",
+  "version": "1.0.0",
+  "description": "LeNK/UNIC backend HTTP API contract — endpoints, conditions grammar, GZIP envelope, schema namespacing, auth flow.",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT",
+  "keywords": [
+    "api",
+    "backend",
+    "endpoint",
+    "select",
+    "insert",
+    "save",
+    "update",
+    "hard-delete",
+    "sync",
+    "upload",
+    "conditions",
+    "gzip",
+    "envelope",
+    "schema",
+    "qas",
+    "prd",
+    "login",
+    "unic",
+    "skill"
+  ],
+  "homepage": "https://github.com/lengockhoa/marketplace/tree/main/skills/unic-api",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "unic-vue",
   "version": "1.0.0",
-  "description": "Nuxt 3 + Vue 2 Options API style (Vue 3 reactivity, Nuxt 3 SSR/auto-imports, Options API data/methods/computed syntax). Includes predefined Control/Grid/Panel components.",
+  "description": "Nuxt 3 + Vue 2 Options API style (Vue 3 reactivity, Nuxt 3 SSR/auto-imports, Options API data/methods/computed syntax). Includes predefined Control/Grid/Panel components. Project-agnostic — DuraOne Portal-specific code lives in examples/duraone-portal/.",
   "author": {
     "name": "LeNK"
   },
