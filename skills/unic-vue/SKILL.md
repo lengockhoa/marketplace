@@ -90,7 +90,7 @@ components/
 │   ├── Footer.vue        ← Page footer
 │   └── Sidebar.vue       ← Sidebar navigation
 ├── View/                 ← View components
-│   ├── Form.vue          ← Form view template
+│   ├── Form.vue          ← Form view template (starter — copy & customize)
 │   └── PDFViewer.vue     ← PDF viewer component
 ├── Template.vue          ← Page template
 └── PDFViewer.vue         ← PDF viewer (root level)
@@ -971,7 +971,7 @@ components/
 │   ├── Header.vue
 │   └── Sidebar.vue
 └── View/                 ← View components
-    ├── Form.vue
+    ├── Form.vue          (starter template — copy & customize)
     ├── PDFViewer.vue
     └── Template.vue
 ```
@@ -998,7 +998,7 @@ components/
    - [`Partial/Footer.vue`](components/Partial/Footer.vue) - Page footers
    - [`Partial/Sidebar.vue`](components/Partial/Sidebar.vue) - Sidebar navigation
 7. **View/** - Use for view templates:
-   - [`View/Form.vue`](components/View/Form.vue) - Form view templates
+   - [`View/Form.vue`](components/View/Form.vue) - Form view templates (starter template, copy & customize)
    - [`View/PDFViewer.vue`](components/View/PDFViewer.vue) - PDF viewing components
    - [`View/Template.vue`](components/View/Template.vue) - General templates
 
