@@ -1,8 +1,28 @@
 {
-  "name": "claude-marketplace",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/lengockhoa/marketplace.git",
-  "author": "LeNK <ngockhoale@gmail.com>",
-  "license": "MIT"
+  "name": "@lenk/marketplace",
+  "version": "1.2.1",
+  "private": true,
+  "description": "LeNK's unified 'unic' Claude Code plugin: 8 skills + 5 slash commands. Source of truth for marketplace metadata lives in registry.json; this file is only for tooling that requires a package.json (lint, CI).",
+  "author": {
+    "name": "LeNK",
+    "email": "ngockhoale@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lengockhoa/marketplace.git"
+  },
+  "homepage": "https://github.com/lengockhoa/marketplace",
+  "bugs": {
+    "url": "https://github.com/lengockhoa/marketplace/issues"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-manifests.mjs",
+    "lint:skills": "node scripts/lint-skills.mjs",
+    "test": "node --test tests/",
+    "version": "node scripts/sync-version.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

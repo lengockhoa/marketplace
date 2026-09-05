@@ -1,3 +1,9 @@
+---
+description: Generate tests for the current code or specific functions.
+argument-hint: <target-file-or-symbol>
+allowed-tools: Read, Grep, Glob, Write, Bash
+---
+
 # /test
 
 Generate tests for the current code or specific functions.

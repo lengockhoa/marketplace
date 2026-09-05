@@ -1,3 +1,9 @@
+---
+description: Suggest and implement refactorings for the specified code.
+argument-hint: <target-file-or-symbol>
+allowed-tools: Read, Grep, Glob, Edit, Write
+---
+
 # /refactor
 
 Suggest and implement refactorings for the specified code.

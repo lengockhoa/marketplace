@@ -1,3 +1,9 @@
+---
+description: Provide a high-level explanation of the current file or specific code blocks.
+argument-hint: [file-or-symbol]
+allowed-tools: Read, Grep, Glob
+---
+
 # /explain
 
 Provide a high-level explanation of the current file or specific code blocks.

@@ -1,16 +1,18 @@
 ---
 name: unic-vue
-description: Specialized in Vue.js and Nuxt.js development (Vue 2 Options API, backend integration). Includes predefined components (ControlInput, ControlDatetime, ControlDropdownlist, ControlButton, GridAG, Popup) - use these before creating new ones.
+description: Specialized in Nuxt 3 + Vue 2 Options API style (Vue 3 reactivity, Nuxt 3 routing/SSR/auto-imports, but written with `data`/`methods`/`computed` instead of `<script setup>`). Includes predefined components (ControlInput, ControlDatetime, ControlDropdownlist, ControlButton, GridAG, Popup) — use these before creating new ones.
 triggers:
   - vue
   - nuxt
+  - nuxt 3
+  - vue 3
   - vue component
   - vue form
   - vue page
   - control input
   - control button
   - ag grid
-  - ant design
+  - ant design vue
 ---
 
 # Vue.js & Nuxt.js Expert Skill

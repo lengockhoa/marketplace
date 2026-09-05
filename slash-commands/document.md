@@ -1,3 +1,9 @@
+---
+description: Generate or update documentation for the specified code.
+argument-hint: <target-file-or-symbol>
+allowed-tools: Read, Grep, Glob, Edit, Write
+---
+
 # /document
 
 Generate or update documentation for the specified code.
