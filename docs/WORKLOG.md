@@ -85,6 +85,19 @@ Track session-level execution details.
 
 **User direction:** "chỉ dùng cho Claude Desktop thôi nhé, Claude code là phụ thôi, nếu conflict thì gỡ cả claude code ra". Format is now identical for both targets (Desktop reads the same marketplace.json), so no further conflict expected.
 
+### 2026-09-05 — v1.4.2 real Desktop install fix (commit `c4143da`, tag `v1.4.2`, pushed)
+
+**Real root cause** (after re-fetching with vision analyst + WebFetch'ing official plugin-marketplaces spec):
+> "There is no `components` key. The actual component keys are individual fields: `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`."
+
+`marketplace.json` had `"components": { "skills": [...], "commands": [...] }` which **silently failed install** because the unknown block was dropped — no components were installed, install aborted, generic toast.
+
+**Fix:**
+- Rewrote `marketplace.json`: replaced `components` block with top-level `skills: string[]` and `commands: string[]` arrays at the plugin entry level (per official spec). Each path is `./skills/unic-vue`-style (relative to plugin root, `./` prefix).
+- Dropped "Claude Code" mention from descriptions so Desktop doesn't filter.
+- Rewrote `scripts/cross-check.mjs` to validate the new flat schema (now also checks command parity).
+- All 4 npm validators pass at v1.4.2. GitHub Release v1.4.2 live with detailed notes.
+
 <!-- Entries before 2026-09 archived to docs/WORKLOG_ARCHIVE.md. Keep this file < 600 lines. -->
 
 Keep this file compact to save AI context tokens:
