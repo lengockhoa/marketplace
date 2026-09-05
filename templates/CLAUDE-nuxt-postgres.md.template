@@ -1,0 +1,170 @@
+# Project Instructions (Nuxt/Vue + PostgreSQL)
+
+## Core Principle
+
+**Direct Action. Delegate only when necessary.**
+
+## Task Routing
+
+| Type | Scope | Action |
+|------|-------|--------|
+| DIRECT | ≤10 lines, 1 file | Execute immediately |
+| STANDARD | 11-50 lines, 2-3 files | Use plugins if needed |
+| COMPLEX | >50 lines, >3 files | /feature-dev |
+
+## Response Rules
+
+**DON'T:** Repeat questions, explain before executing, filler language
+
+**DO:** Execute immediately, code first, brief explanation only if needed
+
+---
+
+## Vue/Nuxt Stack
+
+### Structure
+
+```
+components/     # Reusable components (auto-imported)
+composables/    # Utilities, API calls (auto-imported)
+pages/          # Routes (file-based)
+layouts/        # Page layouts
+assets/         # CSS (main.css), images
+```
+
+### Vue 2 Options API Order (MANDATORY)
+
+```javascript
+export default {
+  computed: {},   // 1. Computed
+  data() {},      // 2. Data
+  methods: {},    // 3. Methods
+  mounted() {},   // 4. Lifecycle
+  watch: {}       // 5. Watchers
+}
+```
+
+### CSS Rules
+
+- **NEVER use `<style scoped>`**
+- Define CSS in `assets/main.css` (preferred)
+- Use Bootstrap 5 + Ant Design Vue
+
+### API Pattern
+
+```javascript
+let data = {
+  schema: get_schema(),
+  table: "table_name",
+  conditions: JSON.stringify({ field: value }),
+  order_by: ["field desc"]
+};
+this.rows = await request("/select", data, "get");
+```
+
+### Condition Operators
+
+| Operator | SQL | Example |
+|----------|-----|---------|
+| (none) | = | `{ status: "active" }` |
+| (>) | > | `{ "(>)price": 100 }` |
+| (<) | < | `{ "(<)qty": 50 }` |
+| (>=) | >= | `{ "(>=)date": "2024-01-01" }` |
+| (<=) | <= | `{ "(<=)date": "2024-12-31" }` |
+| (like) | LIKE | `{ "(like)name": "%john%" }` |
+| (in) | IN | `{ "(in)id": [1,2,3] }` |
+
+---
+
+## PostgreSQL Standards
+
+### Data Types (ONLY 3 TYPES)
+
+| Type | Use for |
+|------|---------|
+| `VARCHAR` | Text, dates, timestamps, JSON, UUIDs |
+| `NUMERIC` | All numbers (integer, decimal, money) |
+| `BOOLEAN` | True/false only |
+
+**NEVER use:** DATE, TIMESTAMP, INTEGER, BIGINT, JSON, JSONB, UUID, TEXT
+
+### Table Structure (MANDATORY)
+
+```sql
+CREATE TABLE table_name (
+    id_table_name VARCHAR DEFAULT uuid_in(overlay(overlay(md5(random()::text || ':' || random()::text) placing '4' from 13) placing to_hex(floor(random() * (11 - 8 + 1) + 8)::int)::text from 17)::cstring) PRIMARY KEY,
+    -- columns here (VARCHAR, NUMERIC, BOOLEAN only)
+    created_at VARCHAR DEFAULT TO_CHAR(date_trunc('second', now() AT TIME ZONE 'Asia/Ho_Chi_Minh'), 'YYYY-MM-DD HH24:MI:SS')::character varying
+);
+```
+
+### Naming Conventions
+
+| Object | Pattern | Example |
+|--------|---------|---------|
+| Table | `snake_case` | `users`, `order_items` |
+| Primary Key | `id_<table_name>` | `id_users`, `id_order_items` |
+| Column | `snake_case` | `created_at`, `user_name` |
+| View | `v_<name>` | `v_billing`, `v_user_orders` |
+| Function | `fn_<name>` | `fn_calculate_total` |
+| Index | `idx_table_column` | `idx_users_email` |
+
+### Rules
+
+- **NO foreign keys** - manage relationships manually
+- **NO triggers** - handle logic in application
+- **Always create views** for complex queries
+- **Date format:** `'YYYY-MM-DD HH24:MI:SS'` as VARCHAR
+
+### SQL Workflow
+
+**AI suggests SQL only. User runs manually.**
+
+```bash
+# Use psql to query
+psql -U username -d database -c "SELECT * FROM v_users LIMIT 10;"
+```
+
+### Common Patterns
+
+```sql
+-- Date range (VARCHAR comparison)
+WHERE created_at >= '2024-01-01' AND created_at <= '2024-12-31'
+
+-- Pagination
+LIMIT 20 OFFSET 0
+
+-- Soft delete
+WHERE deleted_at IS NULL
+```
+
+---
+
+## Reusability
+
+**Before creating new files:**
+
+1. Check `components/` for existing components
+2. Check `composables/` for existing utilities
+3. Ask permission if new file needed
+
+**Pre-designed components to use:**
+- `Control/` - Form inputs (Input, Button, Datetime, Dropdownlist)
+- `Grid/` - Tables (AG, AntTable, HtmlTable)
+- `Panel/` - Form containers
+- `Partial/` - Header, Footer, Sidebar
+
+---
+
+## Package Manager
+
+Use **yarn**: `yarn` / `yarn add` / `yarn dev` / `yarn build`
+
+## Documentation
+
+- docs/MEMORY.md - Project memory
+- docs/PROJECT.md - Project context
+
+## After Work
+
+Update docs/MEMORY.md: decisions, tasks, learnings

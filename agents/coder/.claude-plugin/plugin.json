@@ -1,0 +1,9 @@
+{
+  "name": "coder",
+  "version": "1.0.0",
+  "description": "Coder Agent - Implementation specialist for production-quality code",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}

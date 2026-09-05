@@ -1,0 +1,49 @@
+{
+  "name": "lenk-marketplace",
+  "description": "LeNK's curated collection of agents, skills, and slash commands for Claude Code.",
+  "owner": {
+    "name": "lengockhoa"
+  },
+  "plugins": [
+    {
+      "name": "unic-vue",
+      "source": "./skills/unic-vue",
+      "description": "Vue.js & Nuxt.js Expert - Vue 2 Options API, backend integration patterns"
+    },
+    {
+      "name": "unic-sql",
+      "source": "./skills/unic-sql",
+      "description": "PostgreSQL SQL writing conventions for UNIC projects."
+    },
+    {
+      "name": "security-auditor",
+      "source": "./agents/security",
+      "description": "Security Auditor Agent - OWASP vulnerabilities & security hardening"
+    },
+    {
+      "name": "architect",
+      "source": "./agents/architect",
+      "description": "System Architect Agent - Architecture design & implementation plans"
+    },
+    {
+      "name": "debugger",
+      "source": "./agents/debugger",
+      "description": "Debugger Agent - Root cause analysis & bug fixing"
+    },
+    {
+      "name": "researcher",
+      "source": "./agents/researcher",
+      "description": "Researcher Agent - Codebase exploration & technology research"
+    },
+    {
+      "name": "coder",
+      "source": "./agents/coder",
+      "description": "Coder Agent - Implementation specialist for production-quality code"
+    },
+    {
+      "name": "orchestrator",
+      "source": "./agents/orchestrator",
+      "description": "Orchestrator Agent - Workflow coordination for complex multi-phase tasks"
+    }
+  ]
+}

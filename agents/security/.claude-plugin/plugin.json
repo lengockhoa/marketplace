@@ -1,0 +1,9 @@
+{
+  "name": "security-auditor",
+  "version": "1.0.0",
+  "description": "Security Auditor Agent - OWASP vulnerabilities & security hardening",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}

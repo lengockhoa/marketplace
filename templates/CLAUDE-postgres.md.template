@@ -1,0 +1,174 @@
+# Project Instructions (PostgreSQL)
+
+## Core Principle
+
+**Direct Action. Delegate only when necessary.**
+
+## Task Routing
+
+| Type | Scope | Action |
+|------|-------|--------|
+| DIRECT | ≤10 lines, 1 file | Execute immediately |
+| STANDARD | 11-50 lines, 2-3 files | Use plugins if needed |
+| COMPLEX | >50 lines, >3 files | /feature-dev |
+
+## Response Rules
+
+**DON'T:** Repeat questions, explain before executing, filler language
+
+**DO:** Execute immediately, code first, brief explanation only if needed
+
+---
+
+## PostgreSQL Standards
+
+### Data Types (ONLY 3 TYPES)
+
+| Type | Use for |
+|------|---------|
+| `VARCHAR` | Text, dates, timestamps, JSON, UUIDs |
+| `NUMERIC` | All numbers (integer, decimal, money) |
+| `BOOLEAN` | True/false only |
+
+**NEVER use:** DATE, TIMESTAMP, INTEGER, BIGINT, JSON, JSONB, UUID, TEXT
+
+### Table Structure (MANDATORY)
+
+```sql
+CREATE TABLE table_name (
+    id_table_name VARCHAR DEFAULT uuid_in(overlay(overlay(md5(random()::text || ':' || random()::text) placing '4' from 13) placing to_hex(floor(random() * (11 - 8 + 1) + 8)::int)::text from 17)::cstring) PRIMARY KEY,
+    -- columns here (VARCHAR, NUMERIC, BOOLEAN only)
+    created_at VARCHAR DEFAULT TO_CHAR(date_trunc('second', now() AT TIME ZONE 'Asia/Ho_Chi_Minh'), 'YYYY-MM-DD HH24:MI:SS')::character varying
+);
+```
+
+### Naming Conventions
+
+| Object | Pattern | Example |
+|--------|---------|---------|
+| Table | `snake_case` | `users`, `order_items` |
+| Primary Key | `id_<table_name>` | `id_users`, `id_order_items` |
+| Column | `snake_case` | `created_at`, `user_name` |
+| View | `v_<name>` | `v_billing`, `v_user_orders` |
+| Function | `fn_<name>` | `fn_calculate_total` |
+| Index | `idx_table_column` | `idx_users_email` |
+
+### Rules
+
+- **NO foreign keys** - manage relationships manually
+- **NO triggers** - handle logic in application
+- **Always create views** for complex queries
+- **Date format:** `'YYYY-MM-DD HH24:MI:SS'` as VARCHAR
+
+---
+
+## SQL Workflow
+
+**AI suggests SQL only. User runs manually via psql.**
+
+```bash
+# Query data
+psql -U username -d database -c "SELECT * FROM v_users LIMIT 10;"
+
+# Run SQL file
+psql -U username -d database -f script.sql
+```
+
+### Common Patterns
+
+```sql
+-- Date range (VARCHAR comparison)
+WHERE created_at >= '2024-01-01' AND created_at <= '2024-12-31'
+
+-- Pagination
+LIMIT 20 OFFSET 0
+
+-- Soft delete
+WHERE deleted_at IS NULL
+
+-- Join tables (no FK, manual)
+SELECT u.*, o.*
+FROM users u
+JOIN orders o ON o.id_users = u.id_users
+WHERE u.id_users = 'uuid-here';
+```
+
+### Index Guidelines
+
+```sql
+-- Single column
+CREATE INDEX idx_users_email ON users(email);
+
+-- Composite index
+CREATE INDEX idx_orders_user_date ON orders(id_users, created_at DESC);
+
+-- Partial index
+CREATE INDEX idx_orders_active ON orders(status) WHERE deleted_at IS NULL;
+```
+
+### Query Optimization
+
+**Use EXPLAIN ANALYZE:**
+```sql
+EXPLAIN ANALYZE SELECT * FROM v_users WHERE email = 'test@example.com';
+```
+
+**Avoid:**
+- `SELECT *` in production
+- Functions on indexed columns in WHERE
+- OR conditions (prefer UNION)
+- NOT IN with subqueries (use NOT EXISTS)
+
+### Common Functions
+
+```sql
+-- String
+LOWER(), UPPER(), TRIM(), CONCAT(), SUBSTRING()
+
+-- Date (output as VARCHAR)
+TO_CHAR(now(), 'YYYY-MM-DD HH24:MI:SS')
+
+-- Aggregation
+COUNT(), SUM(), AVG(), MIN(), MAX(), STRING_AGG()
+
+-- Window
+ROW_NUMBER(), RANK(), LAG(), LEAD()
+```
+
+### Transactions
+
+```sql
+BEGIN;
+-- operations...
+COMMIT;
+
+-- Or with savepoints
+BEGIN;
+SAVEPOINT sp1;
+-- operations...
+ROLLBACK TO sp1;  -- if needed
+COMMIT;
+```
+
+---
+
+## Security
+
+- Always use parameterized queries
+- Never concatenate user input in SQL
+- Use LEAST PRIVILEGE for DB users
+
+---
+
+## Package Manager
+
+Use **yarn**: `yarn` / `yarn add` / `yarn dev` / `yarn build`
+
+## Documentation
+
+- docs/MEMORY.md - Project memory
+- docs/PROJECT.md - Project context
+
+## After Work
+
+Update docs/MEMORY.md: decisions, tasks, learnings

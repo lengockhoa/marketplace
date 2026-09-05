@@ -1,0 +1,9 @@
+{
+  "name": "architect",
+  "version": "1.0.0",
+  "description": "System Architect Agent - Architecture design & implementation plans",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}

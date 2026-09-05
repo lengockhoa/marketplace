@@ -1,0 +1,9 @@
+{
+  "name": "orchestrator",
+  "version": "1.0.0",
+  "description": "Orchestrator Agent - Workflow coordination for complex multi-phase tasks",
+  "author": {
+    "name": "LeNK"
+  },
+  "license": "MIT"
+}
